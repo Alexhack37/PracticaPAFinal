@@ -9,7 +9,7 @@
 using namespace std;
 class Scene 
 {
-
+	//hola
 	private:
 	
 		//vector<Proyectil*> balas;
