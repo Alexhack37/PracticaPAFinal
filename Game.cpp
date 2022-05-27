@@ -363,6 +363,7 @@ void Game::NewScene(Scene* object) {
 
 };
 
+//escena principal
 void Game::Escena1() {
 	
 	srand(time(NULL));

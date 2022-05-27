@@ -25,10 +25,10 @@ class Scene
 		Camera* camera;
 		Arma* tuArma;
 		Mira* tuMirila;
-		Scene(): boundary(50.0f, 30.0f, 30.0f){
+		Scene(): boundary(50.0f, 30.0f, 200.0f){
 		
 			//this->camera = new CameraFPS(Vector3D(5.0, 5.0, 20.0));
-			this->camera = new Camera(Vector3D(25.0, 15.0, 30.0));
+			this->camera = new Camera(Vector3D(25.0, 15.0, 70.0));
 			this->tuArma = new Arma();
 			this->tuMirila = new Mira(this->tuArma->getPos());
 		
