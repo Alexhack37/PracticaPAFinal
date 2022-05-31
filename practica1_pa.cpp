@@ -70,6 +70,7 @@ void mouseClicked(int button, int state, int x, int y) {
 
 }
 
+//hola buenas
 void initGraphics() {
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_LIGHTING);
