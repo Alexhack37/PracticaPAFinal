@@ -75,23 +75,23 @@ void initGraphics() {
     glEnable(GL_LIGHTING);
     
     
-    GLfloat ambientColor[] = { 0.1f, 0.1f, 0.1f, 1.0f };
-    GLfloat lightPosBase[] = { 10.0f, 10.0f, 10.0f, 0.0f };
-    GLfloat lightColor0[] = { 0.0f, 0.7f, 0.7f,0.0f };
+    //GLfloat ambientColor[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+    //GLfloat lightPosBase[] = { 0.0f, 0.0f, 0.0f, 0.0f }; //10
+    //GLfloat lightColor0[] = { 0.0f, 0.0f, 0.0f,0.0f };
 
-    GLfloat color[] = { 0.0, 0.0, 1.0, 1.0 }; // blue
-    GLfloat white[] = { 1.0, 1.0, 1.0, 1.0 };
-    glLightfv(GL_LIGHT0, GL_POSITION, lightPosBase);
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColor0);
-    glLightfv(GL_LIGHT0, GL_SPECULAR, lightColor0);
-    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, color);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, white);
-    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 100);
-    glEnable(GL_LIGHT0);
+    //GLfloat color[] = { 1.0f, 1.0f, 1.0f, 1.0f }; // blue
+    //GLfloat white[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    //glLightfv(GL_LIGHT0, GL_POSITION, lightPosBase);
+    //glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColor0);
+    //glLightfv(GL_LIGHT0, GL_SPECULAR, lightColor0);
+    //glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
+    //glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, color);
+    //glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, white);
+    //glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 100);
+    //glEnable(GL_LIGHT0);
     
-    GLfloat ambientColor1[4] = { 0.1f, 0.1f, 0.1f, 1.0f };
-    GLfloat lightPos1[4] = { 0.0f, 0.5f, 4.0f, 0.0 };
+    GLfloat ambientColor1[4] = { 0.5f, 0.5f, 0.5f, 0.0f };
+    GLfloat lightPos1[4] = { 1.0f, 1.0f, 1.0f, 0.0f };
     GLfloat lightColor1[4] = { 1.0f, 1.0f, 1.0f, 0.0f };
     glLightfv(GL_LIGHT1, GL_POSITION, lightPos1);
     glLightfv(GL_LIGHT1, GL_DIFFUSE, lightColor1);

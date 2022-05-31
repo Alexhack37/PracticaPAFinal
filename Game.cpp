@@ -315,11 +315,13 @@ void Game::Init() {
 
 
 	*Masterblaster = loader->GetModel();
-	Masterblaster->setPos(Vector3D(25.0f, 15.0f, 10.0f));
 	Masterblaster->setAngulo(Vector3D(0.0f, 0.0f, 180.0f));
+	Masterblaster->setPos(Vector3D(25.0f, 15.0f, 10.0f));
+	Masterblaster->PaintColor(Color(0.0f, 1.0f, 0.0f));
+	//Masterblaster->setRgb(Color(0.0f, 1.0f, 0.0f));
 	Masterblaster->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
 	Masterblaster->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
-	Masterblaster->PaintColor(Color(1.0f, 1.0f, 1.0f));
+	
 	//Masterblaster->setRgb(Color(1.0f, 1.0f, 1.0f));
 	altScene->AddGameObject(Masterblaster);
 	loader->Clear();
@@ -385,6 +387,18 @@ void Game::Escena1() {
 		
 	}
 
+	ModelLoader* loader = new ModelLoader();
+	Model* lata1 = new Model();
+
+	loader->setScala(1);
+	loader->LoadModel("objects\\Soda.obj");
+	*lata1 = loader->GetModel();
+	lata1->setPos(Vector3D(30.0f, 15.0f, 20.0f));
+	lata1->setAngulo(Vector3D(180.0f, 0.0f, 0.0f));
+	lata1->setOrientationSpeed(Vector3D(0.0f, 0.5f, 0.0f));
+	lata1->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	lata1->PaintColor(Color(0.0f, 1.0f, 0.0f));
+	mainScene->AddGameObject(lata1);
 
 	Teapot* teapot = new Teapot();
 	teapot->setAngulo(Vector3D(30.0f, -60.0f, -10.0f));
