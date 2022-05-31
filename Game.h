@@ -56,7 +56,7 @@ private:
 	
 
 public:
-
+	// erfhjbjkhbjklfhbjfafvhdjubdfbajhñuhubdjhbiqwefruhoñeubhjikñev
 
 	Game() : escenaActual(nullptr), initialMilliseconds(duration_cast<milliseconds>(system_clock::now().time_since_epoch())), lasUpdatedTime(0), Jugador(nullptr) {} //?
 
