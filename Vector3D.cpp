@@ -1,7 +1,7 @@
 #include "Vector3D.h"
 
 template <class S> class Vector3Dx;
-typedef Vector3Dx<float> Vector3D;
+typedef Vector3Dx<double> Vector3D;
 
 typedef Vector3Dx<float> Vector3Df;
 typedef Vector3Dx<double> Vector3Dd;

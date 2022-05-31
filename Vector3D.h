@@ -2,7 +2,7 @@
 #include <vector>
 
 template <class S> class Vector3Dx;
-typedef Vector3Dx<float> Vector3D;
+typedef Vector3Dx<double> Vector3D;
 
 typedef Vector3Dx<float> Vector3Df;
 typedef Vector3Dx<double> Vector3Dd;
@@ -16,7 +16,7 @@ private:
 
 public:
 
-
+	//Vector3Dx() :x(0), y(0), z(0) {}
 	Vector3Dx(S x = 0, S y = 0, S z = 0): x(x), y(y), z(z){}
 
 

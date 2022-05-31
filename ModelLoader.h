@@ -14,6 +14,9 @@ private:
 	Model modelo;
 	vector<Vector3D> vertices;
 	vector<Vector3D>  normales;
+
+	vector<Color>  colores;
+
 	float xMin, yMin, zMin, xMax, yMax, zMax;
 
 	float getWidth();

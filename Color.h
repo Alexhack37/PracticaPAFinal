@@ -3,13 +3,17 @@
 class Color{
 private:
 
-	float redComponent{ 0.0 };
-	float greenComponent{ 0.0 };
-	float blueComponent{ 0.0 };
+	//float redComponent{ 0.0 };
+	//float greenComponent{ 0.0 };
+	//float blueComponent{ 0.0 };
+
+	float redComponent;
+	float greenComponent;
+	float blueComponent;
 
 public:
 
-	//Color() = default;
+	Color() = default;
 
 	Color(float r, float g, float b)
 	{

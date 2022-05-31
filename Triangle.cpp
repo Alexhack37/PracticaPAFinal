@@ -3,6 +3,9 @@
 
 void Triangle::Render() {
 
+
+	
+
 	glBegin(GL_TRIANGLES);
 	//vértice 1
 	glColor3f(this->GetVcolor1().getRedComponent(), this->GetVcolor1().getGreenComponent(), this->GetVcolor1().getBlueComponent());
@@ -16,6 +19,7 @@ void Triangle::Render() {
 	glColor3f(this->GetVcolor3().getRedComponent(), this->GetVcolor3().getGreenComponent(), this->GetVcolor3().getBlueComponent());
 	glNormal3f(this->GetNormal3().getCoordinateX(), this->GetNormal3().getCoordinateY(), this->GetNormal3().getCoordinateZ());
 	glVertex3f(this->GetVertice3().getCoordinateX(), this->GetVertice3().getCoordinateY(), this->GetVertice3().getCoordinateZ());
+
 
 	/*glScalef(this->getScaleX(), this->getScaleY(), this->getScaleZ());*/
 	glEnd();

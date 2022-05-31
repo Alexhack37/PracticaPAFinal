@@ -59,22 +59,27 @@ Triangle ModelLoader::parseObjTriangle(const string& line) {
 	int idxVertex0, idxVertex1, idxVertex2;
 	int idxNormal0, idxNormal1, idxNormal2;
 
+
 	istringstream stringStream(line);
 	stringStream >> c;
 	stringStream >> idxVertex0 >> c >> c >> idxNormal0;
 	stringStream >> idxVertex1 >> c >> c >> idxNormal1;
 	stringStream >> idxVertex2 >> c >> c >> idxNormal2;
 
+
+
 	Vector3D vertex0 = this->vertices[static_cast<long long>(idxVertex0) - 1];
 	Vector3D vertex1 = this->vertices[static_cast<long long>(idxVertex1) - 1];
 	Vector3D vertex2 = this->vertices[static_cast<long long>(idxVertex2) - 1];
 
 	Vector3D normal = this->normales[static_cast<long long>(idxNormal0) - 1];
+
+
 	/*Vector3D normal1 = this->normales[idxNormal1 - 1];
 	Vector3D normal2 = this->normales[idxNormal2 - 1];*/
 	
 
-	Triangle parsedTriangle(vertex0, vertex1, vertex2, normal, normal, normal );
+	Triangle parsedTriangle(vertex0, vertex1, vertex2, normal, normal, normal);
 	
 
 	return parsedTriangle;
@@ -94,10 +99,10 @@ void ModelLoader::calcBoundaries(Vector3D vectorPoint){
 
 Triangle ModelLoader::Center(Triangle triangle) {
 
-	Vector3D modelCenter(this->xMin + this->getWidth() / 2.0,
-		this->yMin + this->getHeight() / 2.0,
+	Vector3D modelCenter(this->xMin + this->getWidth() / 2.0f,
+		this->yMin + this->getHeight() / 2.0f,
 
-		this->zMin + this->getLength() / 2);
+		this->zMin + this->getLength() / 2.0f);
 	Triangle centeredTriangle(
 		triangle.GetVertice1().Sub(modelCenter),
 		triangle.GetVertice2().Sub(modelCenter),
@@ -110,6 +115,7 @@ Triangle ModelLoader::Center(Triangle triangle) {
 		triangle.GetNormal1(),
 		triangle.GetNormal2(),
 		triangle.GetNormal3());
+
 	return centeredTriangle;
 }
 

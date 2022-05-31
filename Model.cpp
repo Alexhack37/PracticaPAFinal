@@ -10,6 +10,8 @@ void Model::Clear() {
 
 void Model::PaintColor(Color color) {
 	for (Triangle& triangle : this->triangulos) {
+
+
 		triangle.SetVcolor1(color);
 		triangle.SetVcolor2(color);
 		triangle.SetVcolor3(color);

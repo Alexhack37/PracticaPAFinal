@@ -12,16 +12,21 @@ private:
 	Vector3D normal2;
 	Vector3D normal3;
 
-	Color vcolor1{ 0.0f, 0.0f, 0.0f };
-	Color vcolor2{ 0.0f, 0.0f, 0.0f };
-	Color vcolor3{ 0.0f, 0.0f, 0.0f };
+	//Color vcolor1{ 0.0f, 0.0f, 0.0f };
+	//Color vcolor2{ 0.0f, 0.0f, 0.0f };
+	//Color vcolor3{ 0.0f, 0.0f, 0.0f };
+
+	Color vcolor1;
+	Color vcolor2;
+	Color vcolor3;
 
 	//Vector3D t0, t1, t2;
 	//Texture* texture;
 
 public:
 
-	Triangle(Vector3D vX, Vector3D vY, Vector3D vZ, Vector3D nX, Vector3D nY, Vector3D nZ)
+	Triangle(Vector3D vX, Vector3D vY, Vector3D vZ, Vector3D nX, Vector3D nY, Vector3D nZ,
+		Color c0 = Color(0, 0, 0), Color c1 = Color(0, 0, 0), Color c2 = Color(0, 0, 0))
 	{
 		vertice1 = vX;
 		vertice2 = vY;
@@ -31,7 +36,13 @@ public:
 		normal2 = nY;
 		normal3 = nZ;
 
+		vcolor1 = c0;
+		vcolor2 = c1;
+		vcolor3 = c2;
+
+
 	};
+
 
 	//vertex
 	inline Vector3D GetVertice1() const { return this->vertice1; }
@@ -59,6 +70,14 @@ public:
 	inline void SetVcolor1(Color cx) { vcolor1 = cx; }
 	inline void SetVcolor2(Color cy) { vcolor2 = cy; }
 	inline void SetVcolor3(Color cz) { vcolor3 = cz; }
+
+
+	/*Vector3D getC0() { return c0; }
+	void setC0(Vector3D v) { c0 = v; }
+	Vector3D getC1() { return c1; }
+	void setC1(Vector3D v) { c1 = v; }
+	Vector3D getC2() { return c2; }
+	void setC2(Vector3D v) { c2 = v; }*/
 	
 	//texture
 

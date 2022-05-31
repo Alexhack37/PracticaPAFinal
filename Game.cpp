@@ -380,7 +380,7 @@ void Game::Escena1() {
 		lata->setOrientationSpeed(Vector3D(0.2f,0.2f,0.2f)); // 0, 0.5, 0
 		lata->setSpeed(Vector3D(static_cast <float>(rand() % 4) / 10, static_cast <float>(rand() % 4) / 10, 0.0f));
 		//lata->setRgb(Color(1.0f, 1.0f, 1.0f));
-		//lata->PaintColor(Color(1.0f, 1.0f,1.0f));
+		lata->PaintColor(Color(1.0f, 1.0f,1.0f));
 		mainScene->AddGameObject(lata);
 		
 	}

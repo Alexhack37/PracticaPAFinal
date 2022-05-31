@@ -8,12 +8,12 @@ class Solid
 private:
 
 
-	Vector3D orientationSpeed{ 0.0, 0.0, 0.0 };
-	Vector3D speed{ 0.0, 0.0, 0.0 };
+	Vector3D orientationSpeed{ 0.0f, 0.0f, 0.0f };
+	Vector3D speed{ 0.0f, 0.0f, 0.0f };
 
-	Vector3D posicion{ 0.0, 0.0, 0.0 };
-	Vector3D orientacion{ 0.0, 0.0, 0.0 };
-	Color rgb{ 0.0, 0.0, 0.0 };
+	Vector3D posicion{ 0.0f, 0.0f, 0.0f };
+	Vector3D orientacion{ 0.0f, 0.0f, 0.0f };
+	Color rgb{ 0.0f, 0.0f, 0.0f };
 	
 	int incremento_de_tiempo = 1;
 	 
