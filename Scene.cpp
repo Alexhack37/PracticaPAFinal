@@ -169,10 +169,40 @@ void Scene::DeleteLastGameObject() {
 	
 
 }
-void Scene::DeleteGameObject() {
+void Scene::DeleteGameObject(int i) {
 	
 
-	gameObjects.erase(gameObjects.begin() + 6);
+	gameObjects.erase(gameObjects.begin() + i-1);
+}
+void Scene::DeleteObjectByMyId(int a) {
+
+	for (size_t i = 0; i < gameObjects.size(); i++)
+	{
+		if (gameObjects[i]->getId() == a) {
+			gameObjects.erase(gameObjects.begin() + i );
+		}
+		
+	}
+	
+}
+
+
+
+
+bool Scene::checkObjetIndex(int a) {
+
+	for (size_t i = 0; i < gameObjects.size(); i++)
+	{
+		if (gameObjects[i]->getId() == a) {
+
+			//cout << gameObjects[i]->getId() << endl;
+			return true;
+			//int n = gameObjects[i]->getId();
+		}
+		return false;
+
+	}
+	
 }
 
 void Scene::checkBoundary() {
@@ -195,5 +225,7 @@ void Scene::checkBoundary() {
 			gameObjects[i]->setSpeed(gameObjects[i]->getSpeed().MultValues(Vector3D(1.0, 1.0, -1.0)));
 			//gameObjects[i]->setSpeed(gameObjects[i]->getSpeed()*(Vector3D(1.0, 1.0, -1.0));
 		}
+
+		
 	}
 }

@@ -72,6 +72,8 @@ public:
 	void Escena1();
 	void EscenaFinal();
 	void Congratulations();
+	void GameOver();
 	void Mercadero();
+	void Disparo(Scene* object);
 };
 

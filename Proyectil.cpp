@@ -1,4 +1,5 @@
 #include "Proyectil.h"
+#include "Arma.h"
 
 void Proyectil::Render() {
 
@@ -13,3 +14,7 @@ void Proyectil::Render() {
 	glPopMatrix();
 
 }
+//
+//void Proyectil::collisionDetect(Scene* scena) {
+//	
+//}

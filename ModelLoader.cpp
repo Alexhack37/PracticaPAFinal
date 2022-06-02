@@ -99,10 +99,10 @@ void ModelLoader::calcBoundaries(Vector3D vectorPoint){
 
 Triangle ModelLoader::Center(Triangle triangle) {
 
-	Vector3D modelCenter(this->xMin + this->getWidth() / 2.0f,
-		this->yMin + this->getHeight() / 2.0f,
+	Vector3D modelCenter(this->xMin + this->getWidth() / 2.0,
+		this->yMin + this->getHeight() / 2.0,
 
-		this->zMin + this->getLength() / 2.0f);
+		this->zMin + this->getLength() / 2.0);
 	Triangle centeredTriangle(
 		triangle.GetVertice1().Sub(modelCenter),
 		triangle.GetVertice2().Sub(modelCenter),

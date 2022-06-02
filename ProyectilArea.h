@@ -25,8 +25,8 @@ public:
 		double rInterno = 1,
 		double rExterno = 2.5,
 		int faces = 15,
-		int rings = 15)
-		:Solid{ v, a, c, o, s },
+		int rings = 15, int identificacion = 0)
+		:Solid{ v, a, c, o, s , identificacion},
 		m_rInterno{ rInterno },
 		m_rExterno{ rExterno },
 		m_faces{ faces },

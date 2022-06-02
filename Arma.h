@@ -17,7 +17,7 @@ private:
 
 public:
 
-	Arma(Vector3D position = Vector3D(25.0f, 6.0f, 14.0f),
+	Arma(Vector3D position = Vector3D(0.0f, 0.0f, 0.0f), //25.0f, 6.0f, 14.0f
 		Vector3D orientation = Vector3D(0.0, 0.0, 90.0),
 		Color rgb = Color(0.7, 0.7, 0.7),
 		Vector3D vectorRotacion = Vector3D(0.0, 0.0, 0.0),

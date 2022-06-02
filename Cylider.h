@@ -26,8 +26,9 @@ public:
 		double topRadious = 1.0,
 		double height = 3.0,
 		int slices = 20,
-		int stacks = 20)
-		:Solid{ v, a, c, o, s },
+		int stacks = 20,
+		int identificacion = 0)
+		:Solid{ v, a, c, o, s, identificacion },
 		m_baseRadius{ baseRadius },
 		m_topRadius{ topRadious },
 		m_height{ height },

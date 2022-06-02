@@ -16,18 +16,22 @@ private:
 	Color rgb{ 0.0f, 0.0f, 0.0f };
 	
 	int incremento_de_tiempo = 1;
+	int id;
 	 
 public:
 	Solid() = default;
 	
-	Solid(Vector3D position,Vector3D orientation, Color colour, Vector3D vectorRotacion, Vector3D vectorDesplazamiento)
+	Solid(Vector3D position,Vector3D orientation, Color colour, Vector3D vectorRotacion, Vector3D vectorDesplazamiento, int identificacion)
 	{
 		posicion = position;
 		orientacion = orientation;
 		rgb = colour;
 		orientationSpeed = vectorRotacion;
 		speed = vectorDesplazamiento;
+		id = identificacion;
 	}
+
+
 
 	//getters
 	inline Vector3D getPos()	const { return posicion; }
@@ -36,6 +40,7 @@ public:
 
 	inline Vector3D getOrientationSpeed() const { return orientationSpeed; }
 	inline Vector3D getSpeed()			  const { return speed; }
+	inline int getId()const { return id; }
 
 	// setters
 	
@@ -63,6 +68,8 @@ public:
 	inline void setSpeedX(float x) { speed.setCoordnateX(x); }
 	inline void setSpeedY(float y) { speed.setCoordnateY(y); }
 	inline void setSpeedZ(float z) { speed.setCoordnateZ(z); }
+
+	inline void setId(int identificacion) { id = identificacion; }
 
 	virtual void Render() = 0;
 

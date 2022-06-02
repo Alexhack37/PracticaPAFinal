@@ -7,19 +7,63 @@
 
 
 
-Scene* altScene = new(nothrow) Scene();
-Scene* mainScene = new(nothrow) Scene();
-Scene* finalBossScene = new(nothrow) Scene();
-Scene* endScene = new(nothrow) Scene();
+Scene* altScene = new(nothrow) Scene();//escena junkblaster
+Scene* mainScene = new(nothrow) Scene();//escena primer nivel
+Scene* finalBossScene = new(nothrow) Scene();//escena final boss
+Scene* endScene = new(nothrow) Scene();//si ganas
+Scene* gameOver = new(nothrow) Scene();//si pierdes
 Mercader* comerciante = new Mercader();
-Jugador* player = new Jugador(100.f);
+Jugador* player = new Jugador(0.0f);
 
 
 
 Model* Mecanico = new Model();
 
-//Boton* primerBoton = new Boton();
+ModelLoader* loader = new ModelLoader();
+Teapot* teapot = new Teapot();
+Teapot* teapotB = new Teapot();
+Teapot* teapotA = new Teapot();
+Model* Refresco = new Model();
+Model* Burger = new Model();
+Model* Cake = new Model();
+Model* CupcakeCherry = new Model();
+Model* SodaLataTria = new Model();
+FinalBoss* boss = new FinalBoss();
 
+int modoDisparo = mainScene->tuArma->getShootMode();
+int modoDisparo1 = altScene->tuArma->getShootMode();
+int modoDisparo2 = finalBossScene->tuArma->getShootMode();
+
+Proyectil* bala = new Proyectil();
+void Game::Disparo(Scene* scene) {
+	//arma related things
+
+	//int modoDisparo = scene->tuArma->getShootMode();
+	float estabilizadoX = 0.01;
+	float estabilizadoY = 0.01;
+
+	Vector3D vectorDisparo = Vector3D(scene->tuArma->getAngulo().getCoordinateY() * -1, scene->tuArma->getAngulo().getCoordinateX(), -1.0f);
+
+
+	int saltosEstablX = scene->tuArma->getAngulo().getCoordinateX() / 10;
+	int saltosEstablY = scene->tuArma->getAngulo().getCoordinateY() / 10;
+
+	estabilizadoX += 0.001 * saltosEstablX;
+	estabilizadoY += 0.001 * saltosEstablY;
+
+	Vector3D vectorDisparoAdapt = vectorDisparo.MultValues(Vector3D(estabilizadoX, estabilizadoY, 1.0f));
+	
+	bala->setPos(scene->tuArma->getPos());
+	bala->setAngulo(Vector3D(0.0, 0.0, 0.0));
+	bala->setRgb(Color(1.0, 0.0, 0.0));
+	bala->setOrientationSpeed(Vector3D(0.0, 0.0, 0.0));
+	bala->setSpeed(vectorDisparoAdapt);
+	bala->setId(10);
+	scene->AddGameObject(bala);
+
+
+	
+}
 
 
 int i = 0;
@@ -52,11 +96,7 @@ void Game::ProcessKeyPressed(unsigned char key, int px, int py) {
 	if (key == 'e' && escenaActual == altScene) {
 		Escena1();
 	}
-	if (mainScene->Size() == 0 && escenas.size() == 2) {
-
-
-		EscenaFinal();
-	}
+	
 	if (key == 'y' && escenas.size() == 3) {
 		//std::cout << mainScene->Size() << std::endl;
 		//std::cout << "ultimo borrado" << i << std::endl;
@@ -106,157 +146,52 @@ void Game::ProcessKeyPressed(unsigned char key, int px, int py) {
 		}
 	}
 
-	//arma related things
-
-	int modoDisparo = mainScene->tuArma->getShootMode();
-	int modoDisparo1 = altScene->tuArma->getShootMode();
-	int modoDisparo2 = finalBossScene->tuArma->getShootMode();
-	float estabilizadoX = 0.01;
-	float estabilizadoY = 0.01;
-
-	float estabilizadoX1 = 0.01;
-	float estabilizadoY1= 0.01;
-
-	float estabilizadoX2= 0.01;
-	float estabilizadoY2= 0.01;
-
-	Vector3D vectorDisparo = Vector3D(mainScene->tuArma->getAngulo().getCoordinateY() * -1, mainScene->tuArma->getAngulo().getCoordinateX(), -1.0f);
-	Vector3D vectorDisparo1 = Vector3D(altScene->tuArma->getAngulo().getCoordinateY() * -1, altScene->tuArma->getAngulo().getCoordinateX(), -1.0f);
-	Vector3D vectorDisparo2 = Vector3D(finalBossScene->tuArma->getAngulo().getCoordinateY() * -1, finalBossScene->tuArma->getAngulo().getCoordinateX(), -1.0f);
-
-	int saltosEstablX = mainScene->tuArma->getAngulo().getCoordinateX() / 5;
-	int saltosEstablY = mainScene->tuArma->getAngulo().getCoordinateY() / 5;
-
-
-	int saltosEstablX1 = altScene->tuArma->getAngulo().getCoordinateX() / 5;
-	int saltosEstablY1 = altScene->tuArma->getAngulo().getCoordinateY() / 5;
-
-	
-	int saltosEstablX2 = finalBossScene->tuArma->getAngulo().getCoordinateX() / 5;
-	int saltosEstablY2 = finalBossScene->tuArma->getAngulo().getCoordinateY() / 5;
-
-	estabilizadoX += 0.001 * saltosEstablX;
-	estabilizadoY += 0.001 * saltosEstablY;
-	estabilizadoX1 += 0.001 * saltosEstablX1;
-	estabilizadoY1 += 0.001 * saltosEstablY1;
-
-	estabilizadoX2 += 0.001 * saltosEstablX2;
-	estabilizadoY2 += 0.001 * saltosEstablY2;
-
-
-	//Velocidad y trayectorias segun la mira
-	Vector3D vectorDisparoAdapt = vectorDisparo.MultValues(Vector3D(estabilizadoX, estabilizadoY, 0.5f));
-	Vector3D vectorDisparoAdapt1 = vectorDisparo1.MultValues(Vector3D(estabilizadoX1, estabilizadoY1, 0.5f));
-	Vector3D vectorDisparoAdapt2 = vectorDisparo2.MultValues(Vector3D(estabilizadoX1, estabilizadoY1, 0.5f));
+	////arma related things
 	if (key == 'f' && escenas.size() == 1) {
 		altScene->tuArma->Dispara();
 		if (modoDisparo1 == 0) {
-			//std::cout << "Disparo Normal" << std::endl;
-			Proyectil* bala = new Proyectil(altScene->tuArma->getPos(), Vector3D(0.0, 0.0, 0.0),
-				Color(1.0, 0.0, 0.0), Vector3D(0.0, 0.0, 0.0),
-				vectorDisparoAdapt1);
-			altScene->AddGameObject(bala);
 
-			if (mainScene->Size() > 7) {
-
-
-				altScene->DeleteGameObject();
-			}
-
+			Disparo(altScene);
 		}
-	}
-	else if (key == 's' || key == 'S') {
-		altScene->tuArma->setAngulo(Vector3D(0.0, 0.0, 90.0));
-		altScene->tuMirila->setAngulo(Vector3D(0.0, 0.0, 90.0));
 	}
 
 	if (key == 'f' && escenas.size() == 2) {
 		mainScene->tuArma->Dispara();
 		if (modoDisparo == 0) {
-			//std::cout << "Disparo Normal" << std::endl;
-			Proyectil* bala = new Proyectil(mainScene->tuArma->getPos(), Vector3D(0.0, 0.0, 0.0),
-				Color(1.0, 0.0, 0.0), Vector3D(0.0, 0.0, 0.0),
-				vectorDisparoAdapt);
-			mainScene->AddGameObject(bala);
+		
 
+			Disparo(mainScene);
 
-			//mainScene->GetBalaDato();
-			int x = mainScene->gameObjects[6]->getPos().getCoordinateX();
-			int y = mainScene->gameObjects[6]->getPos().getCoordinateY();
-			std::cout << "BULLET " << x << std::endl;
-			std::cout << "BULLET " << y << std::endl;
-			std::cout << "OBJECT " << mainScene->gameObjects[5]->getPos().getCoordinateX() << std::endl;
-			std::cout << "OBJECT " << mainScene->gameObjects[5]->getPos().getCoordinateY() << std::endl;
-			if (x == mainScene->gameObjects[5]->getPos().getCoordinateX()) {
-				std::cout << "HIT " << std::endl;
-				mainScene->gameObjects.erase(mainScene->gameObjects.begin() + 5);
-			}
-			if (x == mainScene->gameObjects[4]->getPos().getCoordinateX()) {
-				std::cout << "HIT " << std::endl;
-				mainScene->gameObjects.erase(mainScene->gameObjects.begin() + 4);
-			}
-			if (x == mainScene->gameObjects[3]->getPos().getCoordinateX()) {
-				std::cout << "HIT " << std::endl;
-				mainScene->gameObjects.erase(mainScene->gameObjects.begin() + 2);
-			}
-			if (x == mainScene->gameObjects[2]->getPos().getCoordinateX()) {
-				std::cout << "HIT " << std::endl;
-				mainScene->gameObjects.erase(mainScene->gameObjects.begin() + 5);
-			}
-			if (x == mainScene->gameObjects[1]->getPos().getCoordinateX()) {
-				std::cout << "HIT " << std::endl;
-				mainScene->gameObjects.erase(mainScene->gameObjects.begin() + 5);
-			}
-			if (mainScene->Size() > 7) {
-
-
-				mainScene->DeleteGameObject();
-			}
 		}
 	}
-	else if (key == 'd' || key == 'D') {
+	else if (key == 'p' || key == 'P') {
+		
+		//cout << mainScene->checkObjetIndex(2) << endl;
+		mainScene->checkObjetIndex(2);
+		//cout << altScene->checkObjetIndex() << endl;
+		//altScene->DeleteGameObject(5);
+		
 
-		mainScene->tuMirila->CambiarScope();
-		//this->tuMirila->setAngulo(vectorDisparoAdapt);
-
-
-	}
-	else if (key == 's' || key == 'S') {
-		mainScene->tuArma->setAngulo(Vector3D(0.0, 0.0, 90.0));
-		mainScene->tuMirila->setAngulo(Vector3D(0.0, 0.0, 90.0));
 	}
 
 	if (key == 'f' && escenas.size() == 3) {
 		finalBossScene->tuArma->Dispara();
 		if (modoDisparo == 0) {
-			//std::cout << "Disparo Normal" << std::endl;
-			Proyectil* bala = new Proyectil(finalBossScene->tuArma->getPos(), Vector3D(0.0, 0.0, 0.0),
-				Color(1.0, 0.0, 0.0), Vector3D(0.0, 0.0, 0.0),
-				vectorDisparoAdapt2);
-			finalBossScene->AddGameObject(bala);
-
-
-			//mainScene->GetBalaDato();
-			int x = finalBossScene->gameObjects[2]->getPos().getCoordinateX();
-			if (x == finalBossScene->gameObjects[0]->getPos().getCoordinateX()) {
-				std::cout << "HIT " << std::endl;
-				finalBossScene->gameObjects.erase(finalBossScene->gameObjects.begin());
-			}
-			if (finalBossScene->Size() > 7) {
-
-
-				finalBossScene->DeleteGameObject();
-			}
+			Disparo(finalBossScene);
 		}
 	}
-	else if (key == 'd' || key == 'D') {
+	 if (key == 'd' || key == 'D') {
 
 		finalBossScene->tuMirila->CambiarScope();
 		//this->tuMirila->setAngulo(vectorDisparoAdapt);
 
 
 	}
-	else if (key == 's' || key == 'S') {
+	if (key == 's' || key == 'S') {
+		mainScene->tuArma->setAngulo(Vector3D(0.0, 0.0, 90.0));
+		mainScene->tuMirila->setAngulo(Vector3D(0.0, 0.0, 90.0));
+		altScene->tuArma->setAngulo(Vector3D(0.0, 0.0, 90.0));
+		altScene->tuMirila->setAngulo(Vector3D(0.0, 0.0, 90.0));
 		finalBossScene->tuArma->setAngulo(Vector3D(0.0, 0.0, 90.0));
 		finalBossScene->tuMirila->setAngulo(Vector3D(0.0, 0.0, 90.0));
 	}
@@ -310,7 +245,6 @@ void Game::Init() {
 	ModelLoader* loader = new ModelLoader();
 	Model* Masterblaster = new Model();
 	loader->setScala(4.0f);
-	//loader->LoadModel("objects\\TheSpaceJunker.obj");
 	loader->LoadModel("objects\\JUNKBLASTER.obj");
 
 
@@ -318,11 +252,9 @@ void Game::Init() {
 	Masterblaster->setAngulo(Vector3D(0.0f, 0.0f, 180.0f));
 	Masterblaster->setPos(Vector3D(25.0f, 15.0f, 10.0f));
 	Masterblaster->PaintColor(Color(0.0f, 1.0f, 0.0f));
-	//Masterblaster->setRgb(Color(0.0f, 1.0f, 0.0f));
 	Masterblaster->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
 	Masterblaster->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
 	
-	//Masterblaster->setRgb(Color(1.0f, 1.0f, 1.0f));
 	altScene->AddGameObject(Masterblaster);
 	loader->Clear();
 
@@ -346,8 +278,9 @@ void Game::Render() {
 
 }
 
-
 void Game::Update() {
+	/*cout << mainScene->getBounds().getCoordinateY() << endl;
+	cout << bala->getPos().getCoordinateX() << endl;*/
 	
 	milliseconds currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
 	if (currentTime.count() - this->initialMilliseconds.count() - this->lasUpdatedTime > UPDATE_PERIOD) {
@@ -355,7 +288,104 @@ void Game::Update() {
 		this->lasUpdatedTime = currentTime.count() - this->initialMilliseconds.count();
 	}
 	//this->escenaActual->Update();
+	if (bala->getPos().getCoordinateZ() == 1.0f ) {
+		//cout << escenas.size() << endl;
+		if (escenas.size() == 1) {
+			altScene->DeleteObjectByMyId(10);
+		}
+		if (escenas.size() == 2 ) {
+			//cout << "bala borrada" << endl;
+			mainScene->DeleteObjectByMyId(10);
+		}
+		if (escenas.size() == 3) {
+			//cout << "bala borrada" << endl;
+			finalBossScene->DeleteObjectByMyId(10);
+		}
 
+	}
+	//cout << escenas.size() << endl;
+	
+	if (escenas.size() == 2) {
+		
+		if (bala->getPos().getCoordinateX() > Refresco->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + Refresco->getPos().getCoordinateX()
+			&& bala->getPos().getCoordinateY() > Refresco->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + Refresco->getPos().getCoordinateY()) {
+			mainScene->DeleteObjectByMyId(1);
+		}
+		if (bala->getPos().getCoordinateX() > teapot->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + teapot->getPos().getCoordinateX()
+			&& bala->getPos().getCoordinateY() > teapot->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + teapot->getPos().getCoordinateY()
+			&& bala->getPos().getCoordinateZ() > teapot->getPos().getCoordinateZ() && bala->getPos().getCoordinateZ() < loader->getWidth() + teapot->getPos().getCoordinateZ()) {
+			mainScene->DeleteObjectByMyId(2);
+			player->setVida(50.0f);
+			cout << player->getVida() << endl;
+
+		}
+		
+		if (bala->getPos().getCoordinateX() > Burger->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + Burger->getPos().getCoordinateX()
+			&& bala->getPos().getCoordinateY() > Burger->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + Burger->getPos().getCoordinateY()) {
+			mainScene->DeleteObjectByMyId(3);
+		}
+		if (bala->getPos().getCoordinateX() > Cake->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + Cake->getPos().getCoordinateX()
+			&& bala->getPos().getCoordinateY() > Cake->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + Cake->getPos().getCoordinateY()) {
+			mainScene->DeleteObjectByMyId(4);
+		}
+		if (bala->getPos().getCoordinateX() > CupcakeCherry->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + CupcakeCherry->getPos().getCoordinateX()
+			&& bala->getPos().getCoordinateY() > CupcakeCherry->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + CupcakeCherry->getPos().getCoordinateY()) {
+			mainScene->DeleteObjectByMyId(5);
+		}
+		if (bala->getPos().getCoordinateX() > SodaLataTria->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + SodaLataTria->getPos().getCoordinateX()
+			&& bala->getPos().getCoordinateY() > SodaLataTria->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + SodaLataTria->getPos().getCoordinateY()) {
+			mainScene->DeleteObjectByMyId(6);
+		}
+		////funciona pero mal MIRAR TODO no es un for porq quiero que sea todo el tiempo la comprobacion pero no un while porq seria sin fin y crashea el programa
+		//for (size_t i = 0; i < mainScene->gameObjects.size(); i++)
+		//{
+		//	if (bala->getPos().getCoordinateX() > mainScene->gameObjects[i]->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + mainScene->gameObjects[i]->getPos().getCoordinateX()
+		//		&& bala->getPos().getCoordinateY() > mainScene->gameObjects[i]->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + mainScene->gameObjects[i]->getPos().getCoordinateY()
+		//		&& mainScene->gameObjects[i]->getId() ) {
+		//		mainScene->DeleteObjectByMyId(i);
+		//	}
+		//}
+		if (mainScene->Size() == 0) {
+			EscenaFinal();
+		}
+	}
+	if (escenas.size() == 3) {
+		if (bala->getPos().getCoordinateX() > boss->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + boss->getPos().getCoordinateX()
+			&& bala->getPos().getCoordinateY() > boss->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + boss->getPos().getCoordinateY()) {
+			boss->setVida(boss->getVida() - 10.0f);
+			cout << boss->getVida() << endl;
+			if (boss->getVida() < 0.0f) {
+				finalBossScene->DeleteObjectByMyId(9);
+				Congratulations();
+			}
+		}
+		if (bala->getPos().getCoordinateX() > teapotA->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + teapotA->getPos().getCoordinateX()
+			&& bala->getPos().getCoordinateY() > teapotA->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + teapotA->getPos().getCoordinateY()) {
+			finalBossScene->DeleteObjectByMyId(7);
+			if (player->getVida() == 25.f) {
+				//lol
+			}
+			else {
+				player->setVida(25.0f);
+			}
+		}
+		if (bala->getPos().getCoordinateX() > teapotB->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + teapotB->getPos().getCoordinateX()
+			&& bala->getPos().getCoordinateY() > teapotB->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + teapotB->getPos().getCoordinateY()) {
+			finalBossScene->DeleteObjectByMyId(8);
+			if (player->getVida()==25.f) {
+				//termianr partida
+				GameOver();
+			}else{
+				player->setVida(25.0f);
+			}
+			
+		}
+		//if (player->getVida() < 0.0f) {
+		//	cout << "lol" << endl;
+		//	//terminar game aqui
+		//}
+	}
+	
 }
 
 
@@ -367,50 +397,102 @@ void Game::NewScene(Scene* object) {
 
 //escena principal
 void Game::Escena1() {
-	
+	//desafortunadamente no pudo llamar a objetos dentro de funciones sin hacerlos globales, y si lo fueran se acoplan todos juntos al no crear 
+	//una instanciacion nueva en cada bucle :(
+	/*
 	srand(time(NULL));
-	for (int i = 0; i < 5; i++)			
+	for (int i = 0; i < 2; i++)			
 	{
-		ModelLoader* loader = new ModelLoader();
-		Model* lata = new Model();
-		loader->setScala(rand() % 3 + 1);
-		loader->LoadModel("objects\\" + objetos[rand()%7] + ".obj");
+		ModelLoader* loaderPEr = new ModelLoader();
+		Model* objetoPer = new Model();
+		loaderPEr->setScala(rand() % 3 + 1);
+		loaderPEr->LoadModel("objects\\" + objetos[rand()%7] + ".obj");
 
-		*lata = loader->GetModel();
-		lata->setPos(Vector3D(static_cast <float>(rand() % 10), static_cast <float>(rand() % 10) / 10, static_cast <float>(rand() % 9) / 10));//2,2,2
-		lata->setAngulo(Vector3D(0.0f, 0.0f, 180.0f));
-		lata->setOrientationSpeed(Vector3D(0.2f,0.2f,0.2f)); // 0, 0.5, 0
-		lata->setSpeed(Vector3D(static_cast <float>(rand() % 4) / 10, static_cast <float>(rand() % 4) / 10, 0.0f));
-		//lata->setRgb(Color(1.0f, 1.0f, 1.0f));
-		lata->PaintColor(Color(1.0f, 1.0f,1.0f));
-		mainScene->AddGameObject(lata);
+		*objetoPer = loaderPEr->GetModel();
+		objetoPer->setPos(Vector3D(static_cast <float>(rand() % 100), static_cast <float>(rand() % 10) / 10, static_cast <float>(rand() % 9) / 10));//2,2,2
+		objetoPer->setAngulo(Vector3D(0.0f, 0.0f, 180.0f));
+		objetoPer->setOrientationSpeed(Vector3D(0.2f,0.2f,0.2f)); // 0, 0.5, 0
+		objetoPer->setSpeed(Vector3D(static_cast <float>(rand() % 4) / 10, static_cast <float>(rand() % 4) / 10, 0.0f));
+		objetoPer->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+		objetoPer->PaintColor(Color(1.0f, 1.0f,1.0f));
+		mainScene->AddGameObject(objetoPer);
+		loader->Clear();
 		
-	}
+	}*/
 
-	ModelLoader* loader = new ModelLoader();
-	Model* lata1 = new Model();
-
+	
+	player->setVida(100.0f);
+	
+	cout << player->getVida() << endl;
 	loader->setScala(1);
 	loader->LoadModel("objects\\Soda.obj");
-	*lata1 = loader->GetModel();
-	lata1->setPos(Vector3D(30.0f, 15.0f, 20.0f));
-	lata1->setAngulo(Vector3D(180.0f, 0.0f, 0.0f));
-	lata1->setOrientationSpeed(Vector3D(0.0f, 0.5f, 0.0f));
-	lata1->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
-	lata1->PaintColor(Color(0.0f, 1.0f, 0.0f));
-	mainScene->AddGameObject(lata1);
+	*Refresco = loader->GetModel();
+	Refresco->setPos(Vector3D(24.0f, 10.0f, 5.0f));
+	Refresco->setAngulo(Vector3D(180.0f, 0.0f, 0.0f));
+	Refresco->setOrientationSpeed(Vector3D(0.0f, 0.5f, 0.0f));
+	Refresco->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	Refresco->PaintColor(Color(1.0f, 1.0f, 1.0f));
+	Refresco->setId(1);
+	mainScene->AddGameObject(Refresco);
+	loader->Clear();
 
-	Teapot* teapot = new Teapot();
 	teapot->setAngulo(Vector3D(30.0f, -60.0f, -10.0f));
-	teapot->setPos(Vector3D(20.0f, 10.0f, 2.0f));
+	teapot->setPos(Vector3D(20.0f, 10.0f, 5.0f));
 	teapot->setRgb(Color(1.0f, 1.0f, 1.0f));
 	teapot->setOrientationSpeed(Vector3D(0.0f, 0.5f, 0.0f));
 	teapot->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	teapot->setId(2);
 	mainScene->AddGameObject(teapot);
 
-	mainScene->GetBalaDato();
+	loader->setScala(5);
+	loader->LoadModel("objects\\Burger.obj");
+	*Burger = loader->GetModel();
+	Burger->setPos(Vector3D(30.0f, 10.0f, 5.0f));
+	Burger->setAngulo(Vector3D(180.0f, 0.0f, 0.0f));
+	Burger->setOrientationSpeed(Vector3D(0.0f, 0.5f, 0.0f));
+	Burger->setSpeed(Vector3D(0.01f, 0.0f, 0.0f));
+	Burger->PaintColor(Color(1.0f, 1.0f, 1.0f));
+	Burger->setId(3);
+	mainScene->AddGameObject(Burger);
+	loader->Clear();
 
-	
+	loader->setScala(2);
+	loader->LoadModel("objects\\Cake.obj");
+	*Cake = loader->GetModel();
+	Cake->setPos(Vector3D(20.0f, 15.0f, 7.0f));
+	Cake->setAngulo(Vector3D(180.0f, 0.0f, 0.0f));
+	Cake->setOrientationSpeed(Vector3D(0.0f, 0.5f, 0.0f));
+	Cake->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	Cake->PaintColor(Color(1.0f, 1.0f, 1.0f));
+	Cake->setId(4);
+	mainScene->AddGameObject(Cake);
+	loader->Clear();
+
+	loader->setScala(2);
+	loader->LoadModel("objects\\CupcakeCherry.obj");
+	*CupcakeCherry = loader->GetModel();
+	CupcakeCherry->setPos(Vector3D(10.0f, 10.0f, 7.0f));
+	CupcakeCherry->setAngulo(Vector3D(180.0f, 0.0f, 0.0f));
+	CupcakeCherry->setOrientationSpeed(Vector3D(0.0f, 0.5f, 0.0f));
+	CupcakeCherry->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	CupcakeCherry->PaintColor(Color(1.0f, 1.0f, 1.0f));
+	CupcakeCherry->setId(5);
+	mainScene->AddGameObject(CupcakeCherry);
+	loader->Clear();
+
+
+	loader->setScala(4);
+	loader->LoadModel("objects\\Hotdog.obj");
+	*SodaLataTria = loader->GetModel();
+	SodaLataTria->setPos(Vector3D(34.0f, 10.0f, 7.0f));
+	SodaLataTria->setAngulo(Vector3D(180.0f, 0.0f, 0.0f));
+	SodaLataTria->setOrientationSpeed(Vector3D(0.0f, 0.5f, 0.0f));
+	SodaLataTria->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	SodaLataTria->PaintColor(Color(1.0f, 1.0f, 1.0f));
+	SodaLataTria->setId(6);
+	mainScene->AddGameObject(SodaLataTria);
+	loader->Clear();
+
 
 
 	this->escenas.push_back(mainScene);
@@ -431,13 +513,32 @@ void Game::EscenaFinal() {
 
 
 
-	FinalBoss* boss = new FinalBoss();
+	boss->setSize(2);
 	boss->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
-	boss->setPos(Vector3D(25.0f, 15.0f, 10.0f));
+	boss->setPos(Vector3D(24.0f, 10.0f, 5.0f));
 	boss->setRgb(Color(0.0f, 0.0f, 1.0f));
 	boss->setOrientationSpeed(Vector3D(0.0f, 0.01f, 0.0f));
 	boss->setSpeed(Vector3D(0.1f, 0.0f, 0.0f));
+	boss->setId(9);
+	boss->setVida(100);
 	finalBossScene->AddGameObject(boss);
+
+
+	teapotA->setAngulo(Vector3D(30.0f, -60.0f, -10.0f));
+	teapotA->setPos(Vector3D(20.0f, 10.0f, 5.0f));
+	teapotA->setRgb(Color(1.0f, 1.0f, 1.0f));
+	teapotA->setOrientationSpeed(Vector3D(0.0f, 0.5f, 0.0f));
+	teapotA->setSpeed(Vector3D(0.01f, 0.01f, 0.0f));
+	teapotA->setId(7);
+	finalBossScene->AddGameObject(teapotA);
+
+	teapotB->setAngulo(Vector3D(30.0f, -60.0f, -10.0f));
+	teapotB->setPos(Vector3D(30.0f, 20.0f, 5.0f));
+	teapotB->setRgb(Color(1.0f, 0.0f, 1.0f));
+	teapotB->setOrientationSpeed(Vector3D(0.0f, 0.5f, 0.0f));
+	teapotB->setSpeed(Vector3D(-0.01f, -0.01f, 0.0f));
+	teapot->setId(8);
+	finalBossScene->AddGameObject(teapotB);
 
 	this->escenas.push_back(finalBossScene);
 	this->escenaActual = finalBossScene;
@@ -469,6 +570,41 @@ void Game::Congratulations() {
 
 	this->escenas.push_back(endScene);
 	this->escenaActual = endScene;
+}
+void Game::GameOver() {
+
+	std::cout << "final" << std::endl;
+	Text* endText = new Text("PEREDISTE");
+	endText->setPos(Vector3D(20.0f, 15.0f, 10.0f));
+	endText->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
+	endText->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	endText->setRgb(Color(1.0f, 1.0f, 1.0f));
+	gameOver->AddGameObject(endText);
+
+
+	srand(time(NULL));
+	for (int i = 0; i < 20; i++)
+	{
+		ModelLoader* loaderPEr = new ModelLoader();
+		Model* objetoPer = new Model();
+		loaderPEr->setScala(rand() % 3 + 1);
+		loaderPEr->LoadModel("objects\\" + objetos[rand() % 7] + ".obj");
+
+		*objetoPer = loaderPEr->GetModel();
+		objetoPer->setPos(Vector3D(static_cast <float>(rand() % 10), static_cast <float>(rand() % 10) / 10, static_cast <float>(rand() % 9) / 10));//2,2,2
+		objetoPer->setAngulo(Vector3D(0.0f, 0.0f, 180.0f));
+		objetoPer->setOrientationSpeed(Vector3D(0.2f, 0.2f, 0.2f)); // 0, 0.5, 0
+		objetoPer->setSpeed(Vector3D(static_cast <float>(rand() % 4) / 10, static_cast <float>(rand() % 4) / 10, 0.0f));
+		objetoPer->PaintColor(Color(1.0f, 1.0f, 1.0f));
+		gameOver->AddGameObject(objetoPer);
+		loader->Clear();
+
+	}
+
+
+
+	this->escenas.push_back(gameOver);
+	this->escenaActual = gameOver;
 }
 
 void Game::Mercadero() {

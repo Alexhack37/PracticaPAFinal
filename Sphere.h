@@ -19,8 +19,9 @@ public:
 		Vector3D vectorDesplazamiento = Vector3D(0.0, 0.0, 0.0),
 		float radio = 4.0,
 		int slices = 15,
-		int slacks = 15)
-		:Solid{ position, orientation, rgb, vectorRotacion, vectorDesplazamiento },
+		int slacks = 15,
+		int identificacion = 0)
+		:Solid{ position, orientation, rgb, vectorRotacion, vectorDesplazamiento, identificacion },
 		m_radio{ radio },
 		m_slices{slices},
 		m_stacks{slacks} {}

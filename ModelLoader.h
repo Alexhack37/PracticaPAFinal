@@ -19,9 +19,7 @@ private:
 
 	float xMin, yMin, zMin, xMax, yMax, zMax;
 
-	float getWidth();
-	float getHeight();
-	float getLength();
+	
 	void calcBoundaries(Vector3D lastVertex);
 
 	Triangle Center(Triangle triangle);
@@ -29,13 +27,15 @@ private:
 	Triangle parseObjTriangle(const string& archObj);
 public:
 
-	ModelLoader():scala(3.0f), xMin(0.0f), yMin(0.0f) , zMin(0.0f) , xMax(0.0f), yMax(0.0f), zMax(0.0f) {}
+	ModelLoader():scala(0.0f), xMin(0.0f), yMin(0.0f) , zMin(0.0f) , xMax(0.0f), yMax(0.0f), zMax(0.0f) {}
 
 	inline Model GetModel() const { return this->modelo; }
 
 	inline float GetScala() const { return this->scala; }
 	inline void setScala(const  float& scalaToSet) { this->scala = scalaToSet; }
-
+	float getWidth();
+	float getHeight();
+	float getLength();
 
 	void LoadModel(const string& pathobj);
 	void Clear();

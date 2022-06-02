@@ -62,13 +62,41 @@ void mouseMoved(int x, int y) {
 
 }
 
+
+
 void mouseClicked(int button, int state, int x, int y) {
 
-    //writeLine("click");
+    writeLine("click");
     game.ProcessMouseClick(button, state, x, y);
+    int WINAPI gluProject(
+        GLdouble objx,
+        GLdouble objy,
+        GLdouble objz,
+        const GLdouble modelMatrix[16],
+        const GLdouble projMatrix[16],
+        const GLint    viewport[4],
+        GLdouble * winx,
+        GLdouble * winy,
+        GLdouble * winz
+    );
+
+    //float x3 = (2.0f * x) / WINDOW_WIDTH - 1.0f;
+    //float y3 = 1.0f - (2.0f * y) / WINDOW_HEIGHT;
+    //float z3 = 1.0f;
+    //Vector3D ray_nds = Vector3D(x3, y3, z3);
+    //Vector3D ray_clip = Vector3D(ray_nds.getCoordinateX(), -1.0, 1.0);
+    //Vector3D ray_eye =  * ray_clip;
+    //cout << ray_nds << endl;
     glutPostRedisplay();
 
 }
+
+//float x = (2.0f * x) / WINDOW_WIDTH - 1.0f;
+//float y = 1.0f - (2.0f * y) / WINDOW_HEIGHT;
+//float z = 1.0f;
+//Vector3D ray_nds = Vector3D(x, y, z);
+//Vector3D ray_clip = Vector3D(ray_nds.getCoordinateX(), -1.0, 1.0);
+//Vector3D ray_eye = inverse(projection_matrix) * ray_clip;
 
 //hola buenas
 void initGraphics() {

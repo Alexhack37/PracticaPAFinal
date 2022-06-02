@@ -17,8 +17,8 @@ public:
 		Vector3D orientation = Vector3D(0.0, 0.0, 0.0),
 		Color rgb = Color(0.0, 0.0, 0.0),
 		Vector3D vectorRotacion = Vector3D(0.0, 0.0, 0.0),
-		Vector3D vectorDesplazamiento = Vector3D(0.0, 0.0, 0.0), float size = 0.0f, float vida = 10.0f)
-		:Solid{ position, orientation, rgb, vectorRotacion, vectorDesplazamiento },size(size), vida(vida){}
+		Vector3D vectorDesplazamiento = Vector3D(0.0, 0.0, 0.0), float size = 0.0f, float vida = 10.0f, int identificacion = 0 )
+		:Solid{ position, orientation, rgb, vectorRotacion, vectorDesplazamiento,identificacion },size(size), vida(vida){}
 
 
 	inline float getVida() const { return this->vida; }

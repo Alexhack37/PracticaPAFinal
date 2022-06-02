@@ -20,10 +20,11 @@ public:
 		   Color rgb = Color(0.0, 0.0, 0.0),
 		   Vector3D vectorRotacion = Vector3D(0.0, 0.0, 0.0),
 		   Vector3D vectorDesplazamiento = Vector3D(0.0, 0.0, 0.0),
+			int identificacion = 0,
 		   float longit = 4.0,
 		   float height = 2.0,
 		   float width  = 2.0)
-		:Solid{ position, orientation, rgb, vectorRotacion, vectorDesplazamiento },
+		:Solid{ position, orientation, rgb, vectorRotacion, vectorDesplazamiento, identificacion },
 		 m_longit{longit},
 		 m_height{height},
 		 m_width {width}{}

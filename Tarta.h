@@ -22,8 +22,9 @@ public:
 		Color    rgb = Color(0.0, 0.0, 0.0),
 		Vector3D vectorRotacion = Vector3D(0.0, 0.0, 0.0),
 		Vector3D vectorDesplazamiento = Vector3D(0.0, 0.0, 0.0),
-		float puntos = 0.0f, float scala = 4.0f)
-		:Solid{ position, orientation, rgb, vectorRotacion, vectorDesplazamiento },
+		float puntos = 0.0f, float scala = 4.0f,
+		int identificacion = 0)
+		:Solid{ position, orientation, rgb, vectorRotacion, vectorDesplazamiento, identificacion },
 		puntos{ puntos }, scala(scala){}
 
 

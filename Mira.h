@@ -25,8 +25,9 @@ public:
 		bool scopeMode = false,
 		float longit = 0.05,
 		float height = 0.05,
-		float width = 40.0)
-		:Solid{ position, orientation, rgb, vectorRotacion, vectorDesplazamiento },
+		float width = 40.0,
+		int identificacion = 0)
+		:Solid{ position, orientation, rgb, vectorRotacion, vectorDesplazamiento, identificacion },
 		modoMira{ scopeMode },
 		m_longit{ longit },
 		m_height{ height },

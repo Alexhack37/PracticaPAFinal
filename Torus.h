@@ -27,8 +27,9 @@ public:
 		double rInterno = 3.0,
 		double rExterno = 6.0,
 		int faces = 20,
-		int rings = 10)
-		:Solid{ v, a, c, o, s },
+		int rings = 10,
+		int identificacion = 0)
+		:Solid{ v, a, c, o, s ,identificacion},
 		m_rInterno{ rInterno },
 		m_rExterno{ rExterno },
 		m_faces{ faces },
