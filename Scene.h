@@ -9,7 +9,6 @@
 using namespace std;
 class Scene 
 {
-	//hola
 	private:
 	
 		//vector<Proyectil*> balas;
@@ -17,18 +16,19 @@ class Scene
 
 		//CameraFPS* camera;
 		
-
 		void checkBoundary();
+
 	public:
 
 		vector<Solid*> gameObjects;
-		Camera* camera;
+		//Camera* camera;
+		CameraFPS* camera;
 		Arma* tuArma;
 		Mira* tuMirila;
 		Scene(): boundary(50.0f, 30.0f, 30.0f){
 		
-			//this->camera = new CameraFPS(Vector3D(5.0, 5.0, 20.0));
-			this->camera = new Camera(Vector3D(0.0, 0.0, 0.0), Vector3D(25.0, 14.0, 35.0)); //25.0, 15.0, 30.0
+			this->camera = new CameraFPS(Vector3D(25.0, 14.0, 35.0));
+			//this->camera = new Camera(Vector3D(), Vector3D(25.0, 14.0, 35.0)); //25.0, 15.0, 30.0
 			this->tuArma = new Arma(Vector3D(25.0f, 6.0f, 22.0f));
 			this->tuMirila = new Mira(this->tuArma->getPos());
 		

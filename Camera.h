@@ -4,11 +4,15 @@ class Camera: public Solid
 {
 
 public:
-	Camera(Vector3D a = Vector3D(), Vector3D p = Vector3D()) :Solid()
+	
+	Camera(Vector3D lookAt = Vector3D(), Vector3D posicion = Vector3D()) :Solid()
 	{
-		setAngulo(a);
-		setPos(p);
+		setAngulo(lookAt);
+		setPos(posicion);
 		
+	}
+	Camera() {
+
 	}
 	void Render();
 };

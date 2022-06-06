@@ -16,7 +16,8 @@ private:
 	float cameraStep;
 
 public:
-	CameraFPS(Vector3D positionArgument = Vector3D()) : Camera(positionArgument), mouseX(-1), mouseY(-1), cameraStep(0.25) { };
+	CameraFPS(Vector3D positionArgument) : Camera(Vector3D(),positionArgument),
+		mouseX(-1), mouseY(-1), cameraStep(0.25) { };
 	void Render();
 	void Update(const float& time);
 
@@ -28,5 +29,6 @@ public:
 
 	inline float GetMouseY() const { return this->mouseY; }
 	inline void SetMouseY(const float& mouseyToSet) { this->mouseY = mouseyToSet; }
+
 };
 

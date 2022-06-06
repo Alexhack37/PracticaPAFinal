@@ -4,21 +4,21 @@
 #include "Model.h"
 #include "ModelLoader.h"
 #include "Text.h"
+#include "Jugador.h"
 
 
-
+// Escenas del juego
 Scene* altScene = new(nothrow) Scene();//escena junkblaster
 Scene* mainScene = new(nothrow) Scene();//escena primer nivel
 Scene* finalBossScene = new(nothrow) Scene();//escena final boss
 Scene* endScene = new(nothrow) Scene();//si ganas
 Scene* gameOver = new(nothrow) Scene();//si pierdes
 Mercader* comerciante = new Mercader();
-Jugador* player = new Jugador(0.0f);
 
 
 
+//Objetos en el juego
 Model* Mecanico = new Model();
-
 ModelLoader* loader = new ModelLoader();
 Teapot* teapot = new Teapot();
 Teapot* teapotB = new Teapot();
@@ -30,13 +30,16 @@ Model* CupcakeCherry = new Model();
 Model* SodaLataTria = new Model();
 FinalBoss* boss = new FinalBoss();
 
+//Relacionados con el arma y los disparos
+
 int modoDisparo = mainScene->tuArma->getShootMode();
 int modoDisparo1 = altScene->tuArma->getShootMode();
 int modoDisparo2 = finalBossScene->tuArma->getShootMode();
 
 Proyectil* bala = new Proyectil();
+
+//Metodo que procesa los disparos
 void Game::Disparo(Scene* scene) {
-	//arma related things
 
 	//int modoDisparo = scene->tuArma->getShootMode();
 	float estabilizadoX = 0.01;
@@ -60,9 +63,9 @@ void Game::Disparo(Scene* scene) {
 	bala->setSpeed(vectorDisparoAdapt);
 	bala->setId(10);
 	scene->AddGameObject(bala);
+	player.cambiarMunicion(-1.0f);
+	cout << this->player.getMunicion() << endl;
 
-
-	
 }
 
 
@@ -71,22 +74,22 @@ void Game::ProcessKeyPressed(unsigned char key, int px, int py) {
 	//std::cout << "texto " << key << std::endl;
 	this->escenaActual->ProcessKeyPressed(key, px, py);
 
-	if (key == 'm' && escenas.size() == 2) {
-
-		if (i == 1) {
-			Text* aviso = new Text("Ya esta el mecanico aqui");
-			aviso->setPos(Vector3D(5.0f, 10.0f, 0.0f));
-			aviso->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
-			aviso->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
-			aviso->setRgb(Color(1.0f, 1.0f, 1.0f));
-			mainScene->AddGameObject(aviso);
-		}
-		else {
-			Mercadero();
-			i = 1;
-		}
-
-	}
+	//if (key == 'm' && escenas.size() == 2) {
+	//
+	//	if (i == 1) {
+	//		Text* aviso = new Text("Ya esta el mecanico aqui");
+	//		aviso->setPos(Vector3D(5.0f, 10.0f, 0.0f));
+	//		aviso->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
+	//		aviso->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	//		aviso->setRgb(Color(1.0f, 1.0f, 1.0f));
+	//		mainScene->AddGameObject(aviso);
+	//	}
+	//	else {
+	//		Mercadero();
+	//		i = 1;
+	//	}
+	//
+	//}
 	if (key == 't' && escenas.size() == 2) {
 		//std::cout << mainScene->Size() << std::endl;
 		//std::cout << "ultimo borrado" << i << std::endl;
@@ -107,46 +110,46 @@ void Game::ProcessKeyPressed(unsigned char key, int px, int py) {
 		}
 	}
 
-	if (key == '1' && escenas.size() == 2) {
-		//reparar vida
-		if (player->getVida() == 100.0f) {
-			Text* aviso = new Text("Vida al maximo");
-			aviso->setPos(Vector3D(25.0f, 10.0f, 0.0f));
-			aviso->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
-			aviso->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
-			aviso->setRgb(Color(1.0f, 1.0f, 1.0f));
-			mainScene->AddGameObject(aviso);
-
-
-		}
-		else {
-			player->setVida(100.0f);
-		}
-
-
-	}
-	if (key == '2' && escenas.size() == 2) {
-		//Mercadero();
-		if (i == 1) {
-			Text* dialogo = new Text("El mecanico se ha ido");
-			dialogo->setPos(Vector3D(30.0f, 2.0f, 0.0f));
-			dialogo->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
-			dialogo->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
-			dialogo->setRgb(Color(1.0f, 1.0f, 1.0f));
-			mainScene->AddGameObject(dialogo);
-
-		}
-		else {
-			i = 1;
-			std::cout << "texto" << i << std::endl;
-			mainScene->DeleteLastGameObject();
-			mainScene->DeleteLastGameObject();
-			mainScene->DeleteLastGameObject();
-
-		}
-	}
-
-	////arma related things
+	//if (key == '1' && escenas.size() == 2) {
+	//	//reparar vida
+	//	if (player->getVida() == 100.0f) {
+	//		Text* aviso = new Text("Vida al maximo");
+	//		aviso->setPos(Vector3D(25.0f, 10.0f, 0.0f));
+	//		aviso->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
+	//		aviso->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	//		aviso->setRgb(Color(1.0f, 1.0f, 1.0f));
+	//		mainScene->AddGameObject(aviso);
+	//
+	//
+	//	}
+	//	else {
+	//		player->setVida(100.0f);
+	//	}
+	//
+	//
+	//}
+	//if (key == '2' && escenas.size() == 2) {
+	//	//Mercadero();
+	//	if (i == 1) {
+	//		Text* dialogo = new Text("El mecanico se ha ido");
+	//		dialogo->setPos(Vector3D(30.0f, 2.0f, 0.0f));
+	//		dialogo->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
+	//		dialogo->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	//		dialogo->setRgb(Color(1.0f, 1.0f, 1.0f));
+	//		mainScene->AddGameObject(dialogo);
+	//
+	//	}
+	//	else {
+	//		i = 1;
+	//		std::cout << "texto" << i << std::endl;
+	//		mainScene->DeleteLastGameObject();
+	//		mainScene->DeleteLastGameObject();
+	//		mainScene->DeleteLastGameObject();
+	//
+	//	}
+	//}
+	
+	////Botones de disparo
 	if (key == 'f' && escenas.size() == 1) {
 		altScene->tuArma->Dispara();
 		if (modoDisparo1 == 0) {
@@ -197,6 +200,7 @@ void Game::ProcessKeyPressed(unsigned char key, int px, int py) {
 	}
 }
 
+//Movimiento del raton
 void Game::ProcessMouseMovement(int x, int y) {
 	//Se dividen entre 20 para reducir la sensibilidad
 	x = x / 10;
@@ -206,7 +210,7 @@ void Game::ProcessMouseMovement(int x, int y) {
 }
 
 
-
+//Botones del raton
 void Game::ProcessMouseClick(int button, int state, int x, int y) {
 	/*std::cout << "click" << button<< std::endl;
 	std::cout << "click" << x << " + "<< y << std::endl;*/
@@ -216,9 +220,9 @@ void Game::ProcessMouseClick(int button, int state, int x, int y) {
 
 }
 
+
+//Inicia el juego
 void Game::Init() {
-	
-	
 
 	//texto
 
@@ -235,7 +239,7 @@ void Game::Init() {
 	nombres->setPos(Vector3D(25.0f, 5.0f, 10.0f));
 	nombres->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
 	nombres->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
-	nombres->setRgb(Color(1.0f, 1.0f, 1.0f));
+	nombres->setRgb(Color(1.0f, 1.0f, 0.0f));
 	altScene->AddGameObject(nombres);
 
 
@@ -251,7 +255,7 @@ void Game::Init() {
 	*Masterblaster = loader->GetModel();
 	Masterblaster->setAngulo(Vector3D(0.0f, 0.0f, 180.0f));
 	Masterblaster->setPos(Vector3D(25.0f, 15.0f, 10.0f));
-	Masterblaster->PaintColor(Color(0.0f, 1.0f, 0.0f));
+	Masterblaster->PaintColor(Color(1.0f, 1.0f, 0.0f));
 	Masterblaster->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
 	Masterblaster->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
 	
@@ -288,21 +292,23 @@ void Game::Update() {
 		this->lasUpdatedTime = currentTime.count() - this->initialMilliseconds.count();
 	}
 	//this->escenaActual->Update();
-	if (bala->getPos().getCoordinateZ() == 1.0f ) {
-		//cout << escenas.size() << endl;
-		if (escenas.size() == 1) {
-			altScene->DeleteObjectByMyId(10);
-		}
-		if (escenas.size() == 2 ) {
-			//cout << "bala borrada" << endl;
-			mainScene->DeleteObjectByMyId(10);
-		}
-		if (escenas.size() == 3) {
-			//cout << "bala borrada" << endl;
-			finalBossScene->DeleteObjectByMyId(10);
-		}
-
-	}
+	//Elimina la bala cuando llega al limite de la escena
+	//f (bala->getPos().getCoordinateZ() == 1.0f ) {
+	//	//cout << escenas.size() << endl;
+	//	if (escenas.size() == 1) {
+	//		//cout << "bala borrada" << endl;
+	//		altScene->DeleteObjectByMyId(10);
+	//	}
+	//	if (escenas.size() == 2 ) {
+	//		//cout << "bala borrada" << endl;
+	//		mainScene->DeleteObjectByMyId(10);
+	//	}
+	//	if (escenas.size() == 3) {
+	//		//cout << "bala borrada" << endl;
+	//		finalBossScene->DeleteObjectByMyId(10);
+	//	}
+	//
+	//
 	//cout << escenas.size() << endl;
 	
 	if (escenas.size() == 2) {
@@ -315,8 +321,8 @@ void Game::Update() {
 			&& bala->getPos().getCoordinateY() > teapot->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + teapot->getPos().getCoordinateY()
 			&& bala->getPos().getCoordinateZ() > teapot->getPos().getCoordinateZ() && bala->getPos().getCoordinateZ() < loader->getWidth() + teapot->getPos().getCoordinateZ()) {
 			mainScene->DeleteObjectByMyId(2);
-			player->setVida(50.0f);
-			cout << player->getVida() << endl;
+			player.setVida(50.0f);
+			cout << player.getVida() << endl;
 
 		}
 		
@@ -362,21 +368,21 @@ void Game::Update() {
 		if (bala->getPos().getCoordinateX() > teapotA->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + teapotA->getPos().getCoordinateX()
 			&& bala->getPos().getCoordinateY() > teapotA->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + teapotA->getPos().getCoordinateY()) {
 			finalBossScene->DeleteObjectByMyId(7);
-			if (player->getVida() == 25.f) {
+			if (player.getVida() == 25.f) {
 				//lol
 			}
 			else {
-				player->setVida(25.0f);
+				player.setVida(25.0f);
 			}
 		}
 		if (bala->getPos().getCoordinateX() > teapotB->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + teapotB->getPos().getCoordinateX()
 			&& bala->getPos().getCoordinateY() > teapotB->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + teapotB->getPos().getCoordinateY()) {
 			finalBossScene->DeleteObjectByMyId(8);
-			if (player->getVida()==25.f) {
+			if (player.getVida()==25.f) {
 				//termianr partida
 				GameOver();
 			}else{
-				player->setVida(25.0f);
+				player.setVida(25.0f);
 			}
 			
 		}
@@ -421,9 +427,9 @@ void Game::Escena1() {
 	}*/
 
 	
-	player->setVida(100.0f);
+	//player->setVida(45.0f);
 	
-	cout << player->getVida() << endl;
+	cout << player.getVida() << endl;
 	loader->setScala(1);
 	loader->LoadModel("objects\\Soda.obj");
 	*Refresco = loader->GetModel();
@@ -494,11 +500,8 @@ void Game::Escena1() {
 	loader->Clear();
 
 
-
 	this->escenas.push_back(mainScene);
 	this->escenaActual = mainScene;
-
-
 
 }
 
@@ -634,11 +637,8 @@ void Game::Mercadero() {
 	Mecanico->setSpeed(Vector3D(0.1f, 0.0f, 0.0f));
 	Mecanico->PaintColor(Color(1.0f, 1.0f, 1.0f));
 	loader->Clear();
-	
+
 
 	mainScene->AddGameObject(Mecanico);
-
-
-	
 
 }

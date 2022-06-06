@@ -46,19 +46,19 @@ private:
 	long lasUpdatedTime;
 
 	//Scene scene;
-	int sala1 = 0;
+	
 	Scene* escenaActual;
 	vector<Scene*> escenas;
 
 	string objetos[8] = {"Burger", "SodaLataTria", "Cake", "CupcakeCherry", "Hotdog", "Pizza", "Soda", "BurgerTest"};
 
-	Solid* Jugador;
+	Jugador player;
 	
 
 public:
-	// erfhjbjkhbjklfhbjfafvhdjubdfbajhñuhubdjhbiqwefruhoñeubhjikñev
-
-	Game() : escenaActual(nullptr), initialMilliseconds(duration_cast<milliseconds>(system_clock::now().time_since_epoch())), lasUpdatedTime(0), Jugador(nullptr) {} //?
+	//Constructor por defecto
+	Game() : escenaActual(nullptr), initialMilliseconds(duration_cast<milliseconds>(system_clock::now().time_since_epoch())),
+		lasUpdatedTime(0), player() {} //?
 
 	void Init();
 	void Render();

@@ -10,7 +10,7 @@ void CameraFPS :: Render()
 void CameraFPS::Update(const float& time)
 {
 	this->setSpeed(this->calcSpeedVector());
-	Camera::Update(time);
+	//Camera::Update(time);
 }
 
 Vector3D CameraFPS::calcSpeedVector()
@@ -19,16 +19,18 @@ Vector3D CameraFPS::calcSpeedVector()
 	float xOrientation = degToRad(this->getAngulo().getCoordinateX());
 
 	//Flying camera
-	//float xComponent = sin(yOrientation) * cos(xOrientation);
-	//float yComponent = -sin(xOrientation);
-	//float zComponent = -cos(yOrientation) * cos(xOrientation);
+	float xComponent = sin(yOrientation) * cos(xOrientation);
+	float yComponent = -sin(xOrientation);
+	float zComponent = -cos(yOrientation) * cos(xOrientation);
 
 	//Walking camera
-	float xComponent = sin(yOrientation);
-	float yComponent = 0;
-	float zComponent = -cos(yOrientation);
+	//float xComponent = sin(yOrientation);
+	//float yComponent = 0;
+	//float zComponent = -cos(yOrientation);
 
 	Vector3D speedVector = { xComponent, yComponent, zComponent };
+	std::cout << "La posicion de la camara es esta, es un peligro " << this->getPos().getCoordinateX() << " " << this->getPos().getCoordinateY() << " " << this->getPos().getCoordinateZ() << std::endl;
+	//Vector3D speedVector = { 0, 0, 0 };
 	return speedVector;
 }
 

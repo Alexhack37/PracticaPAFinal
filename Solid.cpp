@@ -22,7 +22,6 @@ void Solid::Update(const float& time) {
 
 	this->orientacion = this->orientacion.Add((this->getOrientationSpeed().Product(incremento_de_tiempo)));
 	//this->orientacion = this->orientacion + (this->getOrientationSpeed() * incremento_de_tiempo);
-
-
 }
+
 

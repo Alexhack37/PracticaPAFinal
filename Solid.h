@@ -2,6 +2,8 @@
 #include "Vector3D.h"
 #include "Color.h"
 #include <GL/glut.h>
+#include <iostream>
+using namespace std;
 
 class Solid
 {
@@ -31,6 +33,7 @@ public:
 		id = identificacion;
 	}
 
+	//inline ~Solid() { cout << "Destructor de solid activado" << endl; }
 
 
 	//getters

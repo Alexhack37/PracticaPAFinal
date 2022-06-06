@@ -45,7 +45,7 @@ float Scene::GetBalaY() {
 
 void Scene::Update(const float& time) {
 
-	this->camera->Update(0);
+	this->camera->Update(0.00001);
 	this->tuArma->Update(time);
 	this->tuMirila->Update(time);
 	for (size_t i = 0; i < gameObjects.size(); i++) {
@@ -54,17 +54,17 @@ void Scene::Update(const float& time) {
 	}
 	checkBoundary();
 
-
 }
 
 void Scene::ProcessMouseMovement(int x, int y) {
 
 	this->tuArma->ProcessMouseMovement(x, y);
 	this->tuMirila->ProcessMouseMovement(x, y);
+	this->camera->ProcessMouseMovement(x, y);
 }
 /**/
 void Scene::ProcessKeyPressed(unsigned char key, int px, int py) {
-	
+	this->camera->ProcessKeyPressed(key,px,py);
 	int modoDisparo = this->tuArma->getShootMode();
 	float estabilizadoX = 0.01;
 	float estabilizadoY = 0.01;
@@ -205,27 +205,24 @@ bool Scene::checkObjetIndex(int a) {
 	
 }
 
+//Controla rebotes de los objetos en la caja
 void Scene::checkBoundary() {
 	for (size_t i = 0; i < gameObjects.size(); i++)
 	{
 		if (gameObjects[i]->getPos().getCoordinateX() > boundary.getCoordinateX() || gameObjects[i]->getPos().getCoordinateX() < 0.0f) {
-			//gameObjects[i]->setSpeed(gameObjects[i]->getSpeed().Product(-1));
 
 			gameObjects[i]->setSpeed(gameObjects[i]->getSpeed().MultValues(Vector3D(-1.0, 1.0, 1.0)));	
-			//gameObjects[i]->setSpeed(gameObjects[i]->getSpeed() * Vector3D(-1.0, 1.0, 1.0));	
 		}
 		if (gameObjects[i]->getPos().getCoordinateY() > boundary.getCoordinateY() || gameObjects[i]->getPos().getCoordinateY() < 0.0f) {
-			//gameObjects[i]->setSpeed(gameObjects[i]->getSpeed().Product(-1.0f));		
 			gameObjects[i]->setSpeed(gameObjects[i]->getSpeed().MultValues(Vector3D(1.0, -1.0, 1.0)));
-			//gameObjects[i]->setSpeed(gameObjects[i]->getSpeed() * Vector3D(1.0, -1.0, 1.0));
 		}						
 
 		if (gameObjects[i]->getPos().getCoordinateZ() > boundary.getCoordinateZ() || gameObjects[i]->getPos().getCoordinateZ() < 0.0f) {
-			//gameObjects[i]->setSpeed(gameObjects[i]->getSpeed().Product(-1.0f));
+			
 			gameObjects[i]->setSpeed(gameObjects[i]->getSpeed().MultValues(Vector3D(1.0, 1.0, -1.0)));
-			//gameObjects[i]->setSpeed(gameObjects[i]->getSpeed()*(Vector3D(1.0, 1.0, -1.0));
+			//gameObjects[i]->~Solid();
+			//cout << "bala borrada" << endl;
 		}
 
-		
 	}
 }

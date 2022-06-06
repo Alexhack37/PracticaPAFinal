@@ -18,3 +18,4 @@ void Proyectil::Render() {
 //void Proyectil::collisionDetect(Scene* scena) {
 //	
 //}
+ 

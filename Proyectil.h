@@ -33,9 +33,8 @@ public:
 		m_radio{ radio },
 		m_slices{ slices },
 		m_stacks{ slacks }/*, identidadBala{ ideBala } */{}
-	//~Proyectil() {
-	//	delete[] bala;
-	//}
+
+	inline ~Proyectil() {}
 
 	//virtual void collisionDetect(Scene* escena );
 
