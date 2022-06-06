@@ -11,12 +11,12 @@ private:
 
 public:
 	Jugador() {
-		vida = 100;
-		municion = 50;
-		puntuacion = 0;
+		vida = 100.0f;
+		municion = 50.0f;
+		puntuacion = 0.0f;
 		nombre = "JUNKRAT";
 	}
-	Jugador(float v, float amo, float points, std::string nom)
+	Jugador(float v , float amo, float points, std::string nom)
 	{
 		vida = v;
 		municion = amo;
@@ -37,5 +37,6 @@ public:
 	void cambiarPuntuacion(float puntuacionCambia);
 	void cambiarMunicion(float municionCambia);
 	void cambiarVida(float vidaCambia);
+	
 };
 

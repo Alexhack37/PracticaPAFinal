@@ -10,6 +10,8 @@
 #include "Torus.h"
 #include "Cylider.h"
 #include "Camera.h"
+
+
 #include <vector>
 
 #include "camera_fps.h"
@@ -47,18 +49,20 @@ private:
 
 	//Scene scene;
 	
+	//en escenas
 	Scene* escenaActual;
 	vector<Scene*> escenas;
 
-	string objetos[8] = {"Burger", "SodaLataTria", "Cake", "CupcakeCherry", "Hotdog", "Pizza", "Soda", "BurgerTest"};
+	
 
-	Jugador player;
+	//en escena
+	//Jugador player;
 	
 
 public:
 	//Constructor por defecto
 	Game() : escenaActual(nullptr), initialMilliseconds(duration_cast<milliseconds>(system_clock::now().time_since_epoch())),
-		lasUpdatedTime(0), player() {} //?
+		lasUpdatedTime(0)/*, player() */{} //?
 
 	void Init();
 	void Render();
@@ -69,11 +73,11 @@ public:
 
 	
 	void NewScene(Scene* object);
-	void Escena1();
+	/*void Escena1(Scene* object);
 	void EscenaFinal();
 	void Congratulations();
 	void GameOver();
 	void Mercadero();
-	void Disparo(Scene* object);
+	void Disparo(Scene* object);*/
 };
 
