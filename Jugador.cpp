@@ -1,5 +1,9 @@
 #include "Jugador.h"
 
+//alex
+#include "Vector3D.h"
+#include "Scene.h"
+
 void Jugador::cambiarPuntuacion(float puntuacionCambia) {
 	float nuevaPuntuacion = puntuacionCambia + this->getPuntuacion();
 	this->setPuntuacion(nuevaPuntuacion);
@@ -14,3 +18,4 @@ void Jugador::cambiarMunicion(float municionCambia) {
 	float nuevaMunicion = municionCambia + (this->getMunicion());
 	this->setMunicion(nuevaMunicion);
 }
+
