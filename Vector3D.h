@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-
+#include <math.h> 
 template <class S> class Vector3Dx;
 typedef Vector3Dx<double> Vector3D;
 
@@ -38,7 +38,8 @@ public:
 	Vector3Dx<S> Sub(Vector3Dx<S> v);
 	Vector3Dx<S> Product(const float& v);
 	Vector3Dx<S> MultValues(const Vector3D& v);
-
+	Vector3Dx<S> Normalizar();
+	float Modulo();
 
 };
 
@@ -73,4 +74,20 @@ template <class S> Vector3Dx<S> Vector3Dx<S>::MultValues(const Vector3D& v) {
 	vector.setCoordnateY(y * v.getCoordinateY());
 	vector.setCoordnateZ(z * v.getCoordinateZ());
 	return vector;
+}
+
+template <class S> Vector3Dx<S> Vector3Dx<S>::Normalizar() {
+	Vector3Dx<S> vector;
+	float modulo = vector.Modulo();
+	vector.setCoordnateX(x / modulo);
+	vector.setCoordnateY(y / modulo);
+	vector.setCoordnateZ(z / modulo);
+	return vector;
+}
+
+template<class S>float Vector3Dx<S>::Modulo()
+{
+	float Mod;
+	Mod = sqrt(pow(x,2) + pow(y, 2) + pow(z, 2));
+	return Mod;
 }

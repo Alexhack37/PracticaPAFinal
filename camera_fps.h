@@ -11,6 +11,8 @@ private:
 	int mouseX;
 	int mouseY;
 
+	Vector3D speedVector;
+
 	Vector3D calcSpeedVector();
 
 	float cameraStep;
@@ -29,6 +31,9 @@ public:
 
 	inline float GetMouseY() const { return this->mouseY; }
 	inline void SetMouseY(const float& mouseyToSet) { this->mouseY = mouseyToSet; }
+
+	inline Vector3D GetSpeedVector() const { return this->speedVector; }
+	inline void SetSpeedVector(const Vector3D& nuevoSpeedVector) { this->speedVector = nuevoSpeedVector; }
 
 };
 
