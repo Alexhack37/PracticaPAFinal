@@ -52,7 +52,7 @@ void Scene::Render() {
 
 void Scene::Update(const float& time) {
 
-	this->camera->Update(0.00001);
+	this->camera->Update(0.1);
 	this->tuArma->Update(time);
 	this->tuMirila->Update(time);
 	for (size_t i = 0; i < gameObjects.size(); i++) {
@@ -127,7 +127,7 @@ void Scene::ProcessMouseMovement(int x, int y) {
 
 	this->tuArma->ProcessMouseMovement(x, y);
 	this->tuMirila->ProcessMouseMovement(x, y);
-	//this->camera->ProcessMouseMovement(x, y);
+	this->camera->ProcessMouseMovement(x, y);
 }
 
 void Scene::ProcessKeyPressed(unsigned char key, int px, int py) {
@@ -215,11 +215,13 @@ void Scene::Disparo(Scene* scene) {
 
 	Vector3D vectorDisparoAdapt = vectorDisparo.MultValues(Vector3D(estabilizadoX, estabilizadoY, 1.0f));
 
-	bala->setPos(scene->tuArma->getPos());
+	//bala->setPos(scene->tuArma->getPos());
+	bala->setPos(scene->camera->getPos());
 	bala->setAngulo(Vector3D(0.0, 0.0, 0.0));
 	bala->setRgb(Color(1.0, 0.0, 0.0));
 	bala->setOrientationSpeed(Vector3D(0.0, 0.0, 0.0));
-	bala->setSpeed(vectorDisparoAdapt);
+	//bala->setSpeed(vectorDisparoAdapt);
+	bala->setSpeed(scene->camera->GetSpeedVector().Product(0.1f));
 	bala->setId(10);
 	scene->AddGameObject(bala);
 	player->cambiarMunicion(-1.0f);

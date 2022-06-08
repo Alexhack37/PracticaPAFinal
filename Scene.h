@@ -46,15 +46,15 @@ class Scene
 		vector<Solid*> gameObjects;
 		string objetos[8] = { "Burger", "SodaLataTria", "Cake", "CupcakeCherry", "Hotdog", "Pizza", "Soda", "BurgerTest" };
 
-		Camera* camera;
-		//CameraFPS* camera;
+		//Camera* camera;
+		CameraFPS* camera;
 		Arma* tuArma;
 		Mira* tuMirila;
 		
-		Scene(): boundary(50.0f, 30.0f, 30.0f){
+		Scene(): boundary(50.0f, 30.0f, 50.0f){
 		
-			//this->camera = new CameraFPS(Vector3D(25.0, 14.0, 35.0));
-			this->camera = new Camera(Vector3D(), Vector3D(25.0, 14.0, 35.0)); //25.0, 15.0, 30.0
+			this->camera = new CameraFPS(Vector3D(25.0, 14.0, 35.0));
+			//this->camera = new Camera(Vector3D(), Vector3D(25.0, 14.0, 35.0)); //25.0, 15.0, 30.0
 			this->tuArma = new Arma(Vector3D(25.0f, 6.0f, 22.0f));
 			this->tuMirila = new Mira(this->tuArma->getPos());
 			this->player = new Jugador(100.0f, 30.0f, 0.0f, "JunjkRAt");
