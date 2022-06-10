@@ -81,7 +81,7 @@ void Game::Update() {
 		this->escenaActual->Update(TIME_INCREMENT);
 		this->lasUpdatedTime = currentTime.count() - this->initialMilliseconds.count();
 	}
-	cout << mainScene->Size() << endl;
+	//cout << mainScene->Size() << endl;
 	if (escenas.size() == 2 && mainScene->Size() == 0) {
 		NewScene(finalBossScene);
 		escenaActual = finalBossScene;

@@ -5,6 +5,8 @@
 #include <iostream>
 using namespace std;
 
+class Contorno;
+
 class Solid
 {
 private:
@@ -22,6 +24,11 @@ private:
 	 
 public:
 	Solid() = default;
+
+	//puede dar errores
+	Solid(Vector3D p): posicion (p), orientacion(0.0f, 0.0f, 0.0f),
+		rgb(0.0f, 0.0f, 0.0f), orientationSpeed(0.0f, 0.0f, 0.0f),
+		speed(0.0f, 0.0f, 0.0f), id(0){}
 	
 	Solid(Vector3D position,Vector3D orientation, Color colour, Vector3D vectorRotacion, Vector3D vectorDesplazamiento, int identificacion)
 	{
@@ -33,7 +40,7 @@ public:
 		id = identificacion;
 	}
 
-	//inline ~Solid() { cout << "Destructor de solid activado" << endl; }
+	virtual ~Solid();
 
 
 	//getters
@@ -77,5 +84,10 @@ public:
 	virtual void Render() = 0;
 
 	virtual void Update(const float& time);
+
+	//Relacionados con colisiones
+	virtual bool colision(Solid* s) { return false; }
+	virtual void resuelveColision(Solid* s);
+	virtual Contorno* getContorno();
 };
 

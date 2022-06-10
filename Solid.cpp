@@ -1,4 +1,5 @@
 #include "Solid.h"
+#include "contorno.h"
 
 
 /*void Solid::Render() {
@@ -23,5 +24,18 @@ void Solid::Update(const float& time) {
 	this->orientacion = this->orientacion.Add((this->getOrientationSpeed().Product(incremento_de_tiempo)));
 	//this->orientacion = this->orientacion + (this->getOrientationSpeed() * incremento_de_tiempo);
 }
+Solid:: ~Solid() {
 
+}
+Contorno* Solid::getContorno() {
+	return new Contorno(Vector3D(0, 0, 0), 1);
+}
+void Solid::resuelveColision(Solid* s) {
+	//Vector3D vn = s->getPos().Sub(this->getPos());
+	//vn.Normalizar();
+	//Vector3D vv = s->getSpeed();
+	//Vector3D vr = vv.reflect(vn);
+	//s->setSpeed(vr);
+	std::cout << "Colision detectada";
+}
 

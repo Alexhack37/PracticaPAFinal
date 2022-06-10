@@ -3,7 +3,7 @@
 #include "Vector3D.h"
 #include "Solid.h"
 
-#include "Scene.h"
+//#include "Scene.h"
 
 class Proyectil : public Solid
 {

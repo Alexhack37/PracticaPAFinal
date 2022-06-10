@@ -39,6 +39,8 @@ public:
 	Vector3Dx<S> Product(const float& v);
 	Vector3Dx<S> MultValues(const Vector3D& v);
 	Vector3Dx<S> Normalizar();
+	Vector3Dx<S> crossProduct(const Vector3D& v);
+	float DotProduct(Vector3Dx<S> v);
 	float Modulo();
 
 };
@@ -85,9 +87,31 @@ template <class S> Vector3Dx<S> Vector3Dx<S>::Normalizar() {
 	return vector;
 }
 
+
+template<class S>float Vector3Dx<S>::DotProduct(Vector3Dx<S> v)
+{
+	float dotProd;
+	Vector3Dx<S> vector;
+	dotProd = (vector.getCoordinateX() * v.getCoordinateX()) + (vector.getCoordinateY() * v.getCoordinateY()) + (vector.getCoordinateZ() * v.getCoordinateZ());
+	return dotProd;
+}
+
+//Vector3D crossProduct(const Vector3D v1, const Vector3D v2) {
+//	return Vector3D(
+//		v1.getCoordinateY() * v2.getCoordinateZ() - v1.getCoordinateZ() * v2.getCoordinateY(),
+//		v1.getCoordinateZ() * v2.getCoordinateX() - v1.getCoordinateX() * v2.getCoordinateZ(),
+//		v1.getCoordinateX() * v2.getCoordinateY() - v1.getCoordinateY() * v2.getCoordinateX());
+//}
+template <class S> Vector3Dx<S> Vector3Dx<S>::crossProduct(const Vector3D& v) {
+	Vector3Dx<S> vector;
+	vector.setCoordnateX((y * v.getCoordinateZ()) - (z * v.getCoordinateY()));
+	vector.setCoordnateY((z * v.getCoordinateX()) - (x * v.getCoordinateZ()));
+	vector.setCoordnateZ((x * v.getCoordinateY()) - (y * v.getCoordinateX()));
+	return vector;
+}
 template<class S>float Vector3Dx<S>::Modulo()
 {
 	float Mod;
-	Mod = sqrt(pow(x,2) + pow(y, 2) + pow(z, 2));
+	Mod = sqrt((x * x) + (y * y) + (z * z));
 	return Mod;
 }

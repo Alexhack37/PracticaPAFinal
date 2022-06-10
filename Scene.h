@@ -28,7 +28,6 @@ class Scene
 {
 	private:
 	
-		//vector<Proyectil*> balas;
 		Vector3D boundary;
 		Jugador* player;
 		
@@ -38,19 +37,17 @@ class Scene
 
 	public:
 
-		//cosas de gmae.h
-		/*Scene* escenaActual;
-		vector<Scene*> escenas;*/
-		//
-
 		vector<Solid*> gameObjects;
+		vector<Solid*> colisionables;
+		vector<Solid*> limites;
 		string objetos[8] = { "Burger", "SodaLataTria", "Cake", "CupcakeCherry", "Hotdog", "Pizza", "Soda", "BurgerTest" };
 
 		//Camera* camera;
 		CameraFPS* camera;
 		Arma* tuArma;
 		Mira* tuMirila;
-		
+		Proyectil* tuProyectil;
+
 		Scene(): boundary(50.0f, 30.0f, 50.0f){
 		
 			this->camera = new CameraFPS(Vector3D(25.0, 14.0, 35.0));

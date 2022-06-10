@@ -59,68 +59,69 @@ void Scene::Update(const float& time) {
 		gameObjects[i]->Update(time);
 	}
 	checkBoundary();
-	if (bala->getPos().getCoordinateZ() == 1.0f) {
-		DeleteObjectByMyId(10);
-	}
-	//INIT no funciona
-	if (bala->getPos().getCoordinateX() > teapot0->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + teapot0->getPos().getCoordinateX()
-		&& bala->getPos().getCoordinateY() > teapot0->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + teapot0->getPos().getCoordinateY()) {
-		DeleteObjectByMyId(23);
-		teapot0->setPos(Vector3D(24.0f, 10.0f, 100.0f));
-	}
-	//PRIMERA ESCENA
-	if (bala->getPos().getCoordinateX() > Refresco->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + Refresco->getPos().getCoordinateX()
-		&& bala->getPos().getCoordinateY() > Refresco->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + Refresco->getPos().getCoordinateY()) {
-		DeleteObjectByMyId(1);
-		Refresco->setPos(Vector3D(24.0f, 10.0f, 100.0f));
-	}
-	if (bala->getPos().getCoordinateX() > teapot->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + teapot->getPos().getCoordinateX()
-		&& bala->getPos().getCoordinateY() > teapot->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + teapot->getPos().getCoordinateY()
-		&& bala->getPos().getCoordinateZ() > teapot->getPos().getCoordinateZ() && bala->getPos().getCoordinateZ() < loader->getWidth() + teapot->getPos().getCoordinateZ()) {
-		this->DeleteObjectByMyId(2);
-		player->setVida(50.0f);
-		teapot->setPos(Vector3D(24.0f, 10.0f, 100.0f));
-	}
-	if (bala->getPos().getCoordinateX() > Burger->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + Burger->getPos().getCoordinateX()
-		&& bala->getPos().getCoordinateY() > Burger->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + Burger->getPos().getCoordinateY()) {
-		this->DeleteObjectByMyId(3);
-		Burger->setPos(Vector3D(24.0f, 10.0f, 100.0f));
-	}
-	if (bala->getPos().getCoordinateX() > Cake->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + Cake->getPos().getCoordinateX()
-		&& bala->getPos().getCoordinateY() > Cake->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + Cake->getPos().getCoordinateY()) {
-		this->DeleteObjectByMyId(4);
-		Cake->setPos(Vector3D(24.0f, 10.0f, 100.0f));
-	}
-	if (bala->getPos().getCoordinateX() > CupcakeCherry->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + CupcakeCherry->getPos().getCoordinateX()
-		&& bala->getPos().getCoordinateY() > CupcakeCherry->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + CupcakeCherry->getPos().getCoordinateY()) {
-		this->DeleteObjectByMyId(5);
-		CupcakeCherry->setPos(Vector3D(24.0f, 10.0f, 100.0f));
-	}
-	if (bala->getPos().getCoordinateX() > SodaLataTria->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + SodaLataTria->getPos().getCoordinateX()
-		&& bala->getPos().getCoordinateY() > SodaLataTria->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + SodaLataTria->getPos().getCoordinateY()) {
-		this->DeleteObjectByMyId(6);
-		SodaLataTria->setPos(Vector3D(24.0f, 10.0f, 100.0f));
-	}
-	//SEGUNDA ESCENA
-	if (bala->getPos().getCoordinateX() > boss->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + boss->getPos().getCoordinateX()
-		&& bala->getPos().getCoordinateY() > boss->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + boss->getPos().getCoordinateY()) {
-		boss->setVida(boss->getVida() - 10.0f);
-		cout << boss->getVida() << endl;
-		if (boss->getVida() < 0.0f) {
-			this->DeleteObjectByMyId(9);
-			boss->setPos(Vector3D(24.0f, 10.0f, 100.0f));
-		}
-	}
-	if (bala->getPos().getCoordinateX() > teapotA->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + teapotA->getPos().getCoordinateX()
-		&& bala->getPos().getCoordinateY() > teapotA->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + teapotA->getPos().getCoordinateY()) {
-		teapotA->setPos(Vector3D(24.0f, 10.0f, 100.0f));
-		this->DeleteObjectByMyId(7);
-	}
-	if (bala->getPos().getCoordinateX() > teapotB->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + teapotB->getPos().getCoordinateX()
-		&& bala->getPos().getCoordinateY() > teapotB->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + teapotB->getPos().getCoordinateY()) {
-		teapotB->setPos(Vector3D(24.0f, 10.0f, 100.0f));
-		this->DeleteObjectByMyId(8);
-	}
+	//if (bala->getPos().getCoordinateZ() == 1.0f) {
+	//	DeleteObjectByMyId(10);
+	//}
+	////INIT no funciona
+	//if (bala->getPos().getCoordinateX() > teapot0->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + teapot0->getPos().getCoordinateX()
+	//	&& bala->getPos().getCoordinateY() > teapot0->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + teapot0->getPos().getCoordinateY()) {
+	//	DeleteObjectByMyId(23);
+	//	teapot0->setPos(Vector3D(24.0f, 10.0f, 100.0f));
+	//}
+	////PRIMERA ESCENA
+	//if (bala->getPos().getCoordinateX() > Refresco->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + Refresco->getPos().getCoordinateX()
+	//	&& bala->getPos().getCoordinateY() > Refresco->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + Refresco->getPos().getCoordinateY()) {
+	//	DeleteObjectByMyId(1);
+	//	Refresco->setPos(Vector3D(24.0f, 10.0f, 100.0f));
+	//}
+	//if (bala->getPos().getCoordinateX() > teapot->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + teapot->getPos().getCoordinateX()
+	//	&& bala->getPos().getCoordinateY() > teapot->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + teapot->getPos().getCoordinateY()
+	//	&& bala->getPos().getCoordinateZ() > teapot->getPos().getCoordinateZ() && bala->getPos().getCoordinateZ() < loader->getWidth() + teapot->getPos().getCoordinateZ()) {
+	//	this->DeleteObjectByMyId(2);
+	//	player->setVida(50.0f);
+	//	teapot->setPos(Vector3D(24.0f, 10.0f, 100.0f));
+	//
+	//}
+	//if (bala->getPos().getCoordinateX() > Burger->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + Burger->getPos().getCoordinateX()
+	//	&& bala->getPos().getCoordinateY() > Burger->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + Burger->getPos().getCoordinateY()) {
+	//	this->DeleteObjectByMyId(3);
+	//	Burger->setPos(Vector3D(24.0f, 10.0f, 100.0f));
+	//}
+	//if (bala->getPos().getCoordinateX() > Cake->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + Cake->getPos().getCoordinateX()
+	//	&& bala->getPos().getCoordinateY() > Cake->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + Cake->getPos().getCoordinateY()) {
+	//	this->DeleteObjectByMyId(4);
+	//	Cake->setPos(Vector3D(24.0f, 10.0f, 100.0f));
+	//}
+	//if (bala->getPos().getCoordinateX() > CupcakeCherry->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + CupcakeCherry->getPos().getCoordinateX()
+	//	&& bala->getPos().getCoordinateY() > CupcakeCherry->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + CupcakeCherry->getPos().getCoordinateY()) {
+	//	this->DeleteObjectByMyId(5);
+	//	CupcakeCherry->setPos(Vector3D(24.0f, 10.0f, 100.0f));
+	//}
+	//if (bala->getPos().getCoordinateX() > SodaLataTria->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + SodaLataTria->getPos().getCoordinateX()
+	//	&& bala->getPos().getCoordinateY() > SodaLataTria->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + SodaLataTria->getPos().getCoordinateY()) {
+	//	this->DeleteObjectByMyId(6);
+	//	SodaLataTria->setPos(Vector3D(24.0f, 10.0f, 100.0f));
+	//}
+	////SEGUNDA ESCENA
+	//if (bala->getPos().getCoordinateX() > boss->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + boss->getPos().getCoordinateX()
+	//	&& bala->getPos().getCoordinateY() > boss->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + boss->getPos().getCoordinateY()) {
+	//	boss->setVida(boss->getVida() - 10.0f);
+	//	cout << boss->getVida() << endl;
+	//	if (boss->getVida() < 0.0f) {
+	//		this->DeleteObjectByMyId(9);
+	//		boss->setPos(Vector3D(24.0f, 10.0f, 100.0f));
+	//	}
+	//}
+	//if (bala->getPos().getCoordinateX() > teapotA->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + teapotA->getPos().getCoordinateX()
+	//	&& bala->getPos().getCoordinateY() > teapotA->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + teapotA->getPos().getCoordinateY()) {
+	//	teapotA->setPos(Vector3D(24.0f, 10.0f, 100.0f));
+	//	this->DeleteObjectByMyId(7);
+	//}
+	//if (bala->getPos().getCoordinateX() > teapotB->getPos().getCoordinateX() && bala->getPos().getCoordinateX() < loader->getHeight() + teapotB->getPos().getCoordinateX()
+	//	&& bala->getPos().getCoordinateY() > teapotB->getPos().getCoordinateY() && bala->getPos().getCoordinateY() < loader->getLength() + teapotB->getPos().getCoordinateY()) {
+	//	teapotB->setPos(Vector3D(24.0f, 10.0f, 100.0f));
+	//	this->DeleteObjectByMyId(8);
+	//}
 }
 
 void Scene::ProcessMouseMovement(int x, int y) {
@@ -159,6 +160,7 @@ void Scene::DeleteObjectByMyId(int a) {
 	{
 		if (gameObjects[i]->getId() == a) {
 			gameObjects.erase(gameObjects.begin() + i );
+			//gameObjects[i]->~Solid();
 		}
 		
 	}

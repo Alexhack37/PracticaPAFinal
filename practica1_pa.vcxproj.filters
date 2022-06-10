@@ -49,6 +49,12 @@
     <Filter Include="Archivos de encabezado\ElementosBase\Vectorers">
       <UniqueIdentifier>{d9fc6c56-cc65-432d-adb3-842fef77ad11}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\Cosas colisiones">
+      <UniqueIdentifier>{13666bae-f622-460e-b734-686c388ef79b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Cosas colisiones\Planos">
+      <UniqueIdentifier>{74d20765-17b0-49a7-80a1-a415892278f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Teapot.cpp">
@@ -119,6 +125,36 @@
     </ClCompile>
     <ClCompile Include="Mercader.cpp">
       <Filter>Archivos de origen\Ni idea de como van</Filter>
+    </ClCompile>
+    <ClCompile Include="contorno.cpp">
+      <Filter>Archivos de origen\Cosas colisiones</Filter>
+    </ClCompile>
+    <ClCompile Include="plano.cpp">
+      <Filter>Archivos de origen\Cosas colisiones\Planos</Filter>
+    </ClCompile>
+    <ClCompile Include="planoX.cpp">
+      <Filter>Archivos de origen\Cosas colisiones\Planos</Filter>
+    </ClCompile>
+    <ClCompile Include="planoY.cpp">
+      <Filter>Archivos de origen\Cosas colisiones\Planos</Filter>
+    </ClCompile>
+    <ClCompile Include="planoZ.cpp">
+      <Filter>Archivos de origen\Cosas colisiones\Planos</Filter>
+    </ClCompile>
+    <ClCompile Include="model2.cpp">
+      <Filter>Archivos de origen\Cosas colisiones</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangulo.cpp">
+      <Filter>Archivos de origen\Cosas colisiones</Filter>
+    </ClCompile>
+    <ClCompile Include="CuboColision.cpp">
+      <Filter>Archivos de origen\Cosas colisiones</Filter>
+    </ClCompile>
+    <ClCompile Include="EsferaColision.cpp">
+      <Filter>Archivos de origen\Cosas colisiones</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneUpdate.cpp">
+      <Filter>Archivos de origen\Importantes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +235,36 @@
     </ClInclude>
     <ClInclude Include="Mercader.h">
       <Filter>Archivos de encabezado\Ni idea de como van</Filter>
+    </ClInclude>
+    <ClInclude Include="contorno.h">
+      <Filter>Archivos de origen\Cosas colisiones</Filter>
+    </ClInclude>
+    <ClInclude Include="plano.h">
+      <Filter>Archivos de origen\Cosas colisiones\Planos</Filter>
+    </ClInclude>
+    <ClInclude Include="planoX.h">
+      <Filter>Archivos de origen\Cosas colisiones\Planos</Filter>
+    </ClInclude>
+    <ClInclude Include="planoY.h">
+      <Filter>Archivos de origen\Cosas colisiones\Planos</Filter>
+    </ClInclude>
+    <ClInclude Include="planoZ.h">
+      <Filter>Archivos de origen\Cosas colisiones\Planos</Filter>
+    </ClInclude>
+    <ClInclude Include="model2.h">
+      <Filter>Archivos de origen\Cosas colisiones</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangulo.h">
+      <Filter>Archivos de origen\Cosas colisiones</Filter>
+    </ClInclude>
+    <ClInclude Include="CuboColision.h">
+      <Filter>Archivos de origen\Cosas colisiones</Filter>
+    </ClInclude>
+    <ClInclude Include="EsferaColision.h">
+      <Filter>Archivos de origen\Cosas colisiones</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneUpdate.h">
+      <Filter>Archivos de encabezado\Importantes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

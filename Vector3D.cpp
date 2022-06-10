@@ -52,3 +52,4 @@ Vector3D Vector3D::MultValues(const Vector3D & vectorOperador) {
 //void Vector3D::push_back(const Vector3D& vector) {
 //
 //}
+
