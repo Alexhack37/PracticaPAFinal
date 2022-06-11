@@ -25,7 +25,7 @@ void Solid::Update(const float& time) {
 	//this->orientacion = this->orientacion + (this->getOrientationSpeed() * incremento_de_tiempo);
 }
 Solid:: ~Solid() {
-
+	//delete this;
 }
 Contorno* Solid::getContorno() {
 	return new Contorno(Vector3D(0, 0, 0), 1);
@@ -36,6 +36,6 @@ void Solid::resuelveColision(Solid* s) {
 	//Vector3D vv = s->getSpeed();
 	//Vector3D vr = vv.reflect(vn);
 	//s->setSpeed(vr);
-	std::cout << "Colision detectada";
+	std::cout << "I found amongus"<<endl;
 }
 

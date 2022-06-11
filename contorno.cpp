@@ -21,3 +21,12 @@ bool Contorno::colision(CuboColision* c) {
 	float l = vd.Modulo();
 	return l < r + rc;
 }
+
+bool Contorno::colision(Proyectil* bala)
+{
+	Vector3D pb = bala->getPos();
+	float rb = bala->getRadio();
+	Vector3D vd = pb.Sub(p);
+	float l = vd.Modulo();
+	return l < r + rb;
+}

@@ -31,6 +31,10 @@ void Game::ProcessKeyPressed(unsigned char key, int px, int py) {
 	////Botones de disparo
 	if (key == 'f') {
 		escenaActual->Disparo(escenaActual);
+		//std::cout << "La posicion de la camara es esta, es un peligro " <<
+		//	this->escenaActual->camera->GetSpeedVector().getCoordinateX() <<
+		//	" " << this->escenaActual->camera->GetSpeedVector().getCoordinateY() <<
+		//	" " << this->escenaActual->camera->GetSpeedVector().getCoordinateZ() << std::endl;
 	}
 	if (key == 'p' || key == 'P') {
 
@@ -63,7 +67,10 @@ void Game::ProcessMouseClick(int button, int state, int x, int y) {
 void Game::Init() {
 	NewScene(altScene);
 	escenaActual = altScene;
+	//Normal
 	escenaActual->Init(altScene);
+	//VersionDeluxe
+	//escenaActual->Init(altScene);
 }
 void Game::NewScene(Scene* object) {
 	escenas.push_back(object);

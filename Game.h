@@ -1,29 +1,7 @@
 #pragma once
 
 
-
-#include "Solid.h"
-#include "Teapot.h"
-#include "Cube.h"
-#include "CuboId.h"
-#include "Sphere.h"
-#include "Torus.h"
-#include "Cylider.h"
-#include "Camera.h"
-
-
 #include <vector>
-
-#include "camera_fps.h"
-#include "Arma.h"
-
-#include "Tarta.h"
-#include "Boton.h"
-#include "Mercader.h"
-#include "FinalBoss.h"
-#include "Text.h"
-#include "Proyectil.h"
-#include "Jugador.h"
 
 #include "Scene.h"
 #include <string>

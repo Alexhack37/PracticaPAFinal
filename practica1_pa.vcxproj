@@ -149,6 +149,7 @@
     <ClCompile Include="EsferaColision.cpp" />
     <ClCompile Include="FinalBoss.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameUpdate.cpp" />
     <ClCompile Include="Jugador.cpp" />
     <ClCompile Include="Mercader.cpp" />
     <ClCompile Include="Mira.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="EsferaColision.h" />
     <ClInclude Include="FinalBoss.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameUpdate.h" />
     <ClInclude Include="Jugador.h" />
     <ClInclude Include="Mercader.h" />
     <ClInclude Include="Mira.h" />

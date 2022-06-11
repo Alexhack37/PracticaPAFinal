@@ -1,5 +1,6 @@
 #include "Proyectil.h"
 #include "Arma.h"
+#include "contorno.h"
 
 void Proyectil::Render() {
 
@@ -14,8 +15,19 @@ void Proyectil::Render() {
 	glPopMatrix();
 
 }
-//
-//void Proyectil::collisionDetect(Scene* scena) {
-//	
-//}
+
+void Proyectil::resuelveColision(Solid* s)
+{
+	std::cout << "Actualy" << endl;
+}
+
+Contorno* Proyectil::getContorno() {
+	return new Contorno(getPos(), getRadio());
+}
+bool Proyectil::colision(Solid* s) {
+	Contorno* c = s->getContorno();
+	return c->colision(this);
+	return false;
+}
+
  

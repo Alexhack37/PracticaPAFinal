@@ -52,7 +52,7 @@ void Scene::Render() {
 
 void Scene::Update(const float& time) {
 
-	this->camera->Update(0.1);
+	this->camera->Update(0);
 	this->tuArma->Update(time);
 	this->tuMirila->Update(time);
 	for (size_t i = 0; i < gameObjects.size(); i++) {
@@ -226,8 +226,14 @@ void Scene::Disparo(Scene* scene) {
 	bala->setSpeed(scene->camera->GetSpeedVector().Product(0.1f));
 	bala->setId(10);
 	scene->AddGameObject(bala);
+	//Esto ahora lo lleva jugador de Game
 	player->cambiarMunicion(-1.0f);
 }
+
+
+// La manera de funcionar de estos métodos es la siguiente, dentro del paréntesis
+// introduces un puntero escena por defecto y cada uno te rellena sus arrays para crear una escena 
+// prefabricada
 
 void Scene::Init(Scene* object) {
 
@@ -236,7 +242,8 @@ void Scene::Init(Scene* object) {
 	
 	Text* intro = new Text("Jugar");
 
-	intro->setPos(Vector3D(25.0f, 10.0f, 10.0f));
+	//intro->setPos(Vector3D(25.0f, 10.0f, 10.0f));
+	intro->setPos(Vector3D(0.0f, 0.0f, 0.0f));
 	intro->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
 	intro->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
 	intro->setRgb(Color(1.0f, 1.0f, 1.0f));
@@ -264,7 +271,7 @@ void Scene::Init(Scene* object) {
 	Masterblaster->setAngulo(Vector3D(0.0f, 0.0f, 180.0f));
 	Masterblaster->setPos(Vector3D(25.0f, 15.0f, 10.0f));
 	Masterblaster->PaintColor(Color(1.0f, 1.0f, 0.0f));
-	Masterblaster->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	Masterblaster->setOrientationSpeed(Vector3D(0.0f, 3.0f, 0.0f));
 	Masterblaster->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
 
 	object->AddGameObject(Masterblaster);
@@ -273,7 +280,7 @@ void Scene::Init(Scene* object) {
 	
 	teapot0->setAngulo(Vector3D(30.0f, -60.0f, -10.0f));
 	teapot0->setPos(Vector3D(20.0f, 12.0f, 5.0f));
-	teapot0->setRgb(Color(1.0f, 1.0f, 1.0f));
+	teapot0->setRgb(Color(1.0f, 0.0f, 0.0f));
 	teapot0->setOrientationSpeed(Vector3D(0.0f, 5.0f, 0.0f));
 	teapot0->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
 	teapot0->setId(23);

@@ -41,7 +41,7 @@ public:
 	inline float getWidth() const { return this->m_width; }
 	inline void  setWidth(const  float& widthToSet) { this->m_height = widthToSet; }
 
-	inline float getShootMode() const { return this->modoDisparo; }
+	inline int getShootMode() const { return this->modoDisparo; }
 	inline void setShootMode(const  int& nuevoShootMode) { this->modoDisparo = nuevoShootMode; }
 
 

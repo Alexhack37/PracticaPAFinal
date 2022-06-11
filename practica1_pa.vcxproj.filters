@@ -156,6 +156,9 @@
     <ClCompile Include="SceneUpdate.cpp">
       <Filter>Archivos de origen\Importantes</Filter>
     </ClCompile>
+    <ClCompile Include="GameUpdate.cpp">
+      <Filter>Archivos de origen\Importantes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -264,6 +267,9 @@
       <Filter>Archivos de origen\Cosas colisiones</Filter>
     </ClInclude>
     <ClInclude Include="SceneUpdate.h">
+      <Filter>Archivos de encabezado\Importantes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameUpdate.h">
       <Filter>Archivos de encabezado\Importantes</Filter>
     </ClInclude>
   </ItemGroup>

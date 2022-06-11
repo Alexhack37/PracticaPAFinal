@@ -1,5 +1,4 @@
 #pragma once
-#include <GL/glut.h>
 #include "Vector3D.h"
 #include "Solid.h"
 
@@ -8,14 +7,10 @@
 class Proyectil : public Solid
 {
 private:
-
 	//Proyectil* bala;
-	double m_radio{};
-	int m_slices{};
-	int m_stacks{};
-	//int identidadBala;
-
-	
+	float m_radio;
+	int m_slices;
+	int m_stacks;
 
 public:
 
@@ -36,8 +31,6 @@ public:
 
 	inline ~Proyectil() {}
 
-	//virtual void collisionDetect(Scene* escena );
-
 	inline float getRadio()  const { return this->m_radio; }
 	inline int	 getSlices() const { return this->m_slices; }
 	inline int	 getStacks() const { return this->m_stacks; }
@@ -49,5 +42,9 @@ public:
 	//inline void setId(const float& nuevoId) { this->identidadBala = nuevoId; }
 
 	void Render();
+
+	Contorno* getContorno();
+	bool colision(Solid* s);
+	void resuelveColision(Solid* s);
 };
 
