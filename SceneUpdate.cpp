@@ -15,6 +15,7 @@
 #include "FinalBoss.h"
 #include "Text.h"
 #include "Teapot.h"
+#include "Mercader.h"
 
 SceneUpdate::~SceneUpdate() {
 	// TODO Auto-generated destructor stub
@@ -143,7 +144,6 @@ void SceneUpdate::EscenaTesteo(SceneUpdate* escenaCambia)
 	muestraBoss->setDano(20);
 	// Este es para poner el tamaño de la hitbox
 	muestraBoss->setScala(1.0f);
-	
 	escenaCambia->add(muestraBoss);
 
 	//Declaro los solid
@@ -230,7 +230,7 @@ void SceneUpdate::Init(SceneUpdate* escenaCambia, string nombre)
 	muestraText->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
 	muestraText->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
 	muestraText->setRgb(Color(1.0f, 1.0f, 1.0f));
-	escenaCambia->add(muestraText);
+	escenaCambia->addFijo(muestraText);
 
 }
 void SceneUpdate::EscenaRandom(SceneUpdate* escenaCambia) {
@@ -271,6 +271,7 @@ void SceneUpdate::EscenaRandom(SceneUpdate* escenaCambia) {
 
 }
 
+
 void SceneUpdate::checkBoundary() {
 	for (size_t i = 0; i < moviles.size(); i++)
 	{
@@ -285,5 +286,190 @@ void SceneUpdate::checkBoundary() {
 			moviles[i]->setSpeed(moviles[i]->getSpeed().MultValues(Vector3D(1.0, 1.0, -1.0)));
 		}
 	}
+}
 
+void SceneUpdate::EscenaFinal(SceneUpdate* escenaUsando) {
+
+	Text* muestraText = new Text();
+	Model* muestraModelo = new Model();
+	FinalBoss* muestraBoss = new FinalBoss();
+	ModelLoader* muestraLoader = new ModelLoader();
+
+
+	muestraText = new Text("FINNAL BOSS");
+	muestraText->setPos(Vector3D(22.0f, 25.0f, 0.0f));
+	muestraText->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
+	muestraText->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	muestraText->setRgb(Color(1.0f, 1.0f, 1.0f));
+	escenaUsando->addFijo(muestraText);
+
+
+	//Así se declara un boss
+	//Este es para poner el tamaño del modelo
+	muestraLoader->setScala(0.2);
+	muestraLoader->LoadModel("objects\\Meteorito.obj");
+	*muestraBoss = muestraLoader->GetBoss();
+	muestraBoss->setPos(Vector3D(20.0f, 12.0f, 7.0f));
+	muestraBoss->setAngulo(Vector3D(0.0f, 90.0f, 0.0f));
+	muestraBoss->setOrientationSpeed(Vector3D(0.4f, 0.0f, 0.0f));
+	muestraBoss->setSpeed(Vector3D(0.1f, 0.0f, 0.0f));
+	muestraBoss->PaintColor(Color(1.0f, 0.0f, 1.0f));
+	// Este es para poner el tamaño de la hitbox
+	muestraBoss->setScala(1.0f);
+	escenaUsando->add(muestraBoss);
+
+	muestraModelo = new Model();
+	muestraLoader = new ModelLoader();
+
+	//Este es para poner el tamaño del modelo
+	muestraLoader->setScala(1);
+	muestraLoader->LoadModel("objects\\Satelite.obj");
+	*muestraModelo = muestraLoader->GetModel();
+	muestraModelo->setPos(Vector3D(20.0f, 10.0f, 5.0f));
+	muestraModelo->setAngulo(Vector3D(30.0f, -60.0f, -10.0f));
+	muestraModelo->setOrientationSpeed(Vector3D(0.0f, 0.5f, 0.0f));
+	muestraModelo->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	muestraModelo->PaintColor(Color(0.0f, 1.0f, 1.0f));
+	muestraModelo->setDano(25);
+	// Este es para poner el tamaño de la hitbox
+	muestraModelo->setScala(1.0f);
+	escenaUsando->add(muestraModelo);
+}
+void SceneUpdate::Congratulations(SceneUpdate* escenaUsando, string nombre, int amo) {
+
+
+	////Este es para poner el tamaño del modelo
+	//muestraLoader->setScala(1);
+	//muestraLoader->LoadModel("objects\\Satelite.obj");
+	//*muestraModelo = muestraLoader->GetModel();
+	//muestraModelo->setPos(Vector3D(20.0f, 10.0f, 5.0f));
+	//muestraModelo->setAngulo(Vector3D(30.0f, -60.0f, -10.0f));
+	//muestraModelo->setOrientationSpeed(Vector3D(0.0f, 0.5f, 0.0f));
+	//muestraModelo->setSpeed(Vector3D(0.1f, 0.1f, 0.0f));
+	//muestraModelo->PaintColor(Color(0.0f, 1.0f, 1.0f));
+	//// Este es para poner el tamaño de la hitbox
+	//muestraModelo->setScala(1.0f);
+	//escenaUsando->add(muestraModelo);
+
+	std::cout << "final" << std::endl;
+	Text* end = new Text("GANASTE ENHORABUENA " + nombre);
+	end->setPos(Vector3D(20.0f, 15.0f, 10.0f));
+	end->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
+	end->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	end->setRgb(Color(1.0f, 1.0f, 1.0f));
+	escenaUsando->add(end);
+
+	ModelLoader* loader = new ModelLoader();
+	Model* tarta = new Model();
+	loader->setScala(3);
+	loader->LoadModel("objects\\Cake.obj");
+	*tarta = loader->GetModel();
+	tarta->setPos(Vector3D(20.0f, 10.0f, 10.0f));
+	tarta->setAngulo(Vector3D(0.0f, 0.0f, 180.0f));
+	tarta->setOrientationSpeed(Vector3D(0.0f, 0.5f, 0.0f));
+	tarta->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	tarta->PaintColor(Color(1.0f, 1.0f, 1.0f));
+	loader->setScala(1.0f);
+	escenaUsando->add(tarta);
+
+	Text* totalAmo = new Text("Municion Gastada en total: " + to_string(amo));
+	totalAmo->setPos(Vector3D(30.0f, 10.0f, 10.0f));
+	totalAmo->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
+	totalAmo->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	totalAmo->setRgb(Color(1.0f, 1.0f, 1.0f));
+	escenaUsando->add(totalAmo);
+
+	Text* puntuacion = new Text("Puntuacion final " + to_string(amo - 10));
+	puntuacion->setPos(Vector3D(30.0f, 5.0f, 10.0f));
+	puntuacion->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
+	puntuacion->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	puntuacion->setRgb(Color(1.0f, 1.0f, 1.0f));
+	escenaUsando->add(puntuacion);
+}
+
+void SceneUpdate::GameOver(SceneUpdate* escenaUsando) {
+
+	Text* endText = new Text("PEREDISTE");
+	endText->setPos(Vector3D(5.0f, 15.0f, 20.0f));
+	endText->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
+	endText->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	endText->setRgb(Color(1.0f, 1.0f, 1.0f));
+	escenaUsando->addFijo(endText);
+
+
+	srand(time(NULL));
+	for (int i = 0; i < 5; i++)
+	{
+		ModelLoader* loaderPEr = new ModelLoader();
+		Model* objetoPer = new Model();
+		loaderPEr->setScala(rand() % 3 + 1);
+		loaderPEr->LoadModel("objects\\" + objetos[rand() % 7] + ".obj");
+
+		*objetoPer = loaderPEr->GetModel();
+		objetoPer->setPos(Vector3D(static_cast <float>(rand() % 10), static_cast <float>(rand() % 10) / 10, static_cast <float>(rand() % 9) / 10));//2,2,2
+		objetoPer->setAngulo(Vector3D(0.0f, 0.0f, 180.0f));
+		objetoPer->setOrientationSpeed(Vector3D(0.2f, 0.2f, 0.2f)); // 0, 0.5, 0
+		objetoPer->setSpeed(Vector3D(static_cast <float>(rand() % 4) / 10, static_cast <float>(rand() % 4) / 10, 0.0f));
+		objetoPer->PaintColor(Color(1.0f, 1.0f, 1.0f));
+		loaderPEr->setScala(1.0f);
+		escenaUsando->add(objetoPer);
+		loaderPEr->Clear();
+
+	}
+}
+void SceneUpdate::Mercadero(SceneUpdate* SceneUpdate, int i) {
+	ModelLoader* loader = new ModelLoader();
+	Mercader* mecanico = new Mercader();
+	Text* textoMeca = new Text();
+	loader->setScala(1.0f);
+	loader->LoadModel("objects\\Mechanic.obj");
+
+	*mecanico = loader->GetModelMer();
+	switch (i) {
+	case 1:
+
+		mecanico->setPos(Vector3D(20.0f, 15.0f, 10.0f));
+		mecanico->setAngulo(Vector3D(180.0, 90.0, 0.0));
+		mecanico->setRgb(Color(1.0, 0.0, 0.0));
+		mecanico->setOrientationSpeed(Vector3D(0.0, 0.0, 0.0));
+		mecanico->setSpeed(Vector3D(0.1f, 0.0f, 0.0f));
+		mecanico->PaintColor(Color(1.0f, 1.0f, 1.0f));
+		SceneUpdate->addFijo(mecanico);
+		loader->Clear();
+
+		textoMeca = new Text("¡Hola! ¿Quieres que repare tu nave?   Y: 1 N: 2");
+		textoMeca->setPos(Vector3D(5.0f, 10.0f, 0.0f));
+		textoMeca->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
+		textoMeca->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+		textoMeca->setRgb(Color(1.0f, 1.0f, 1.0f));
+		SceneUpdate->addFijo(textoMeca);
+		break;
+	case 2:
+		
+		textoMeca->setPos(Vector3D(5.0f, 10.0f, 110.0f));
+		mecanico->setPos(Vector3D(20.0f, 15.0f, 100.0f));
+		SceneUpdate->DeleteLastGameObject();
+		SceneUpdate->DeleteLastGameObject();
+		break;
+	case 3:
+		
+		textoMeca->setPos(Vector3D(5.0f, 10.0f, 110.0f));
+		mecanico->setPos(Vector3D(20.0f, 15.0f, 100.0f));
+		
+		SceneUpdate->DeleteLastGameObject();
+		SceneUpdate->DeleteLastGameObject();
+		break;
+	}
+}
+
+
+int  SceneUpdate::Size() {
+	return solidos.size();
+}
+int  SceneUpdate::SizeCol() {
+	return colisionables.size();
+}
+void SceneUpdate::DeleteLastGameObject() {
+	colisionables.pop_back();
+	solidos.pop_back();
 }

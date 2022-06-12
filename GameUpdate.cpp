@@ -13,21 +13,55 @@ void GameUpdate::ProcessMouseMovement(int x, int y) {
 	y = y / 10;
 	this->escenaActual->ProcessMouseMovement(x, y);
 }
+
 void GameUpdate::ProcessKeyPressed(unsigned char key, int px, int py) {
 	this->escenaActual->ProcessKeyPressed(key, px, py);
 
 
 	if (key == 'i' || key == 'I') { //reset camera
-		std::cout << "Tienes estos puntos " << this->player->getPuntuacion()<< endl;
+		std::cout << "Tienes estos puntos " << this->player->getPuntuacion() << endl;
 		std::cout << "Tienes estos vida " << this->player->getVida() << endl;
+		std::cout << "Tienes estos muni " << this->player->getMunicion() << endl;
+	}
+	int i;
+	if (key == 't' && escenaActual == mainScene) {
+		mainScene->DeleteLastGameObject();
+	}
+	if (key == 'e' && escenaActual == altScene) {
+		escenaActual->EscenaRandom(mainScene);
+	}
+	if (key == 'm' && escenaActual == mainScene && mecanicoUp) {
+		escenaActual = mainScene;
+		i = 1;
+		escenaActual->Mercadero(mainScene, i);
+		mecanicoUp = false;
+	}
+	if (key == 'n' && escenaActual == mainScene && !mecanicoUp) {
+		escenaActual = mainScene;
+		i = 2;
+		cout << "hola" << endl;
+		escenaActual->Mercadero(mainScene, i);
+		mecanicoUp = true;
+	}
+	if (key == 'y' && escenaActual == mainScene && !mecanicoUp) {
+		escenaActual = mainScene;
+		i = 3;
+		escenaActual->Mercadero(mainScene, i);
+		this->getPlayer()->setVida(100.0f);
+		mecanicoUp = true;
+	}
+	if (key == 's' || key == 'S') { //reset camera
+
+		escenaActual->getCamera()->setAngulo(Vector3D(0.0, 0.0, 0.0));
+		//escenaActual->tuMirila->setAngulo(Vector3D(0.0, 0.0, 0.0));
 	}
 }
 void GameUpdate::ProcessMouseClick(int button, int state, int x, int y) {
-	//if (x > 350 && y > 400 && escenaActual == altScene) {
-	//	escenaActual = mainScene;
-	//	escenaActual->Escena1(mainScene);
-	//	NewScene(mainScene);
-	//}
+	if (x > 350 && y > 400 && escenaActual == altScene) {
+		escenaActual = mainScene;
+		escenaActual->EscenaRandom(mainScene);
+		NewScene(mainScene);
+	}
 }
 void GameUpdate::resuelveColisiones()
 {
@@ -41,6 +75,7 @@ void GameUpdate::Init() {
 	cin >> nombreJugador;
 	this->player->setNombre(nombreJugador);
 	this->getPlayer()->setNombre(nombreJugador);
+
 	NewScene(altScene);
 	escenaActual = altScene;
 	//Normal
@@ -49,6 +84,9 @@ void GameUpdate::Init() {
 	escenaActual->EscenaTesteo(altScene);
 	//VersionRandom
 	//escenaActual->EscenaRandom(altScene);
+	//escenaActual->EscenaFinal(altScene);
+	//escenaActual->Congratulations(altScene, player->getNombre(), amo);
+	//escenaActual->GameOver(altScene);
 }
 void GameUpdate::NewScene(SceneUpdate* object) {
 	escenas.push_back(object);
@@ -66,20 +104,27 @@ void GameUpdate::Update() {
 	}
 
 	//Regula que tipo de escena tiene al terminar el juego
-	////cout << mainScene->Size() << endl;
-	//if (escenas.size() == 2 && mainScene->Size() == 0) {
-	//	NewScene(finalBossScene);
-	//	escenaActual = finalBossScene;
-	//	escenaActual->EscenaFinal(finalBossScene);
-	//}
-	//if (escenas.size() == 3 && !finalBossScene->checkObjetIndex(9)) {
-	//	NewScene(endScene);
-	//	escenaActual = endScene;
-	//	escenaActual->Congratulations(endScene);
-	//}
-	//if (escenas.size() == 3 && !finalBossScene->checkObjetIndex(7) && !finalBossScene->checkObjetIndex(8)) {
-	//	NewScene(gameOver);
-	//	escenaActual = gameOver;
-	//	escenaActual->GameOver(gameOver);
-	//}
+	//cout << escenaActual->Size() << endl;
+	if (escenas.size() == 2 && mainScene->Size() == 0) {
+		NewScene(finalBossScene);
+		escenaActual = finalBossScene;
+		escenaActual->EscenaFinal(finalBossScene);
+	}
+	if (escenas.size() == 3 && finalBossScene->SizeCol() == 0) {
+		NewScene(endScene);
+		escenaActual = endScene;
+		escenaActual->Congratulations(endScene, player->getNombre(), player->getMunicion());
+	}
+	if (escenas.size() == 3 && finalBossScene->SizeCol() == 0) {
+		NewScene(gameOver);
+		escenaActual = gameOver;
+		escenaActual->GameOver(gameOver);
+	}
+	if (getPlayer()->getMunicion() <= 0 || getPlayer()->getVida() <= 0) {
+		NewScene(gameOver);
+		escenaActual = gameOver;
+		escenaActual->GameOver(gameOver);
+		player->setMunicion(1);
+		player->setVida(1);
+	}
 }

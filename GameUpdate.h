@@ -28,6 +28,8 @@ private:
 	vector<SceneUpdate*> escenas;
 
 public:
+	bool mecanicoUp = true;
+
 	GameUpdate() {
 
 		escenaActual = new SceneUpdate();
