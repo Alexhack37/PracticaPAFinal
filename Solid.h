@@ -21,6 +21,8 @@ private:
 	
 	int incremento_de_tiempo = 1;
 	int id;
+	float puntos = 0;
+	float danoPorDar = 0;
 	 
 public:
 	Solid() = default;
@@ -51,6 +53,8 @@ public:
 	inline Vector3D getOrientationSpeed() const { return orientationSpeed; }
 	inline Vector3D getSpeed()			  const { return speed; }
 	inline int getId()const { return id; }
+	inline float getPuntos()const { return puntos; }
+	inline float getDano()const { return danoPorDar; }
 
 	// setters
 	
@@ -80,6 +84,9 @@ public:
 	inline void setSpeedZ(float z) { speed.setCoordnateZ(z); }
 
 	inline void setId(int identificacion) { id = identificacion; }
+
+	inline void setPuntos(float puntosNuevo) { puntos = puntosNuevo; }
+	inline void setDano(float danoNuevo) { danoPorDar = danoNuevo; }
 
 	virtual void Render() = 0;
 

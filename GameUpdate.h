@@ -35,6 +35,10 @@ public:
 		lasUpdatedTime = 0;
 		player = new Jugador();
 	};
+
+	inline Jugador* getPlayer() const { return player; }
+	void setJugador(Jugador* nuevoJugador) { this->player = nuevoJugador; }
+
 	void Init();
 	void Render();
 	void Update();

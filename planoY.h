@@ -4,7 +4,7 @@
  *  Created on: Nov 6, 2015
  *      Author: francisco
  */
-
+#pragma once
 #include "plano.h"
 
 class PlanoY : public Plano {

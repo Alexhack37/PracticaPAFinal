@@ -2,7 +2,6 @@
 
 //alex
 #include "Vector3D.h"
-#include "Scene.h"
 
 void Jugador::cambiarPuntuacion(float puntuacionCambia) {
 	float nuevaPuntuacion = puntuacionCambia + this->getPuntuacion();

@@ -84,12 +84,6 @@
     <ClCompile Include="Triangle.cpp">
       <Filter>Archivos de origen\Ni idea de como van</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Archivos de origen\Importantes</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Archivos de origen\Importantes</Filter>
-    </ClCompile>
     <ClCompile Include="practica1_pa.cpp">
       <Filter>Archivos de origen\Importantes</Filter>
     </ClCompile>
@@ -172,12 +166,6 @@
     </ClInclude>
     <ClInclude Include="Solid.h">
       <Filter>Archivos de encabezado\ElementosBase</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Archivos de encabezado\Importantes</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Archivos de encabezado\Importantes</Filter>
     </ClInclude>
     <ClInclude Include="ModelLoader.h">
       <Filter>Archivos de encabezado\Ni idea de como van</Filter>

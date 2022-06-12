@@ -148,7 +148,6 @@
     <ClCompile Include="CuboId.cpp" />
     <ClCompile Include="EsferaColision.cpp" />
     <ClCompile Include="FinalBoss.cpp" />
-    <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameUpdate.cpp" />
     <ClCompile Include="Jugador.cpp" />
     <ClCompile Include="Mercader.cpp" />
@@ -163,7 +162,6 @@
     <ClCompile Include="practica1_pa.cpp" />
     <ClCompile Include="Proyectil.cpp" />
     <ClCompile Include="ProyectilArea.cpp" />
-    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneUpdate.cpp" />
     <ClCompile Include="Solid.cpp" />
     <ClCompile Include="Sphere.cpp" />
@@ -187,7 +185,6 @@
     <ClInclude Include="CuboId.h" />
     <ClInclude Include="EsferaColision.h" />
     <ClInclude Include="FinalBoss.h" />
-    <ClInclude Include="Game.h" />
     <ClInclude Include="GameUpdate.h" />
     <ClInclude Include="Jugador.h" />
     <ClInclude Include="Mercader.h" />
@@ -201,7 +198,6 @@
     <ClInclude Include="planoZ.h" />
     <ClInclude Include="Proyectil.h" />
     <ClInclude Include="ProyectilArea.h" />
-    <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneUpdate.h" />
     <ClInclude Include="Solid.h" />
     <ClInclude Include="Sphere.h" />

@@ -15,6 +15,12 @@ void GameUpdate::ProcessMouseMovement(int x, int y) {
 }
 void GameUpdate::ProcessKeyPressed(unsigned char key, int px, int py) {
 	this->escenaActual->ProcessKeyPressed(key, px, py);
+
+
+	if (key == 'i' || key == 'I') { //reset camera
+		std::cout << "Tienes estos puntos " << this->player->getPuntuacion()<< endl;
+		std::cout << "Tienes estos vida " << this->player->getVida() << endl;
+	}
 }
 void GameUpdate::ProcessMouseClick(int button, int state, int x, int y) {
 	//if (x > 350 && y > 400 && escenaActual == altScene) {
@@ -25,15 +31,22 @@ void GameUpdate::ProcessMouseClick(int button, int state, int x, int y) {
 }
 void GameUpdate::resuelveColisiones()
 {
-	this->escenaActual->resuelveColisiones();
+	vector<float> datos = this->escenaActual->resuelveColisiones();
+	//this->player->setPuntuacion(this->player->getMunicion() + puntosAnanaidos);
+	player->addPuntuacion(datos[0]);
+	player->addVida(datos[1]);
 }
 void GameUpdate::Init() {
+	string nombreJugador;
+	cin >> nombreJugador;
+	this->player->setNombre(nombreJugador);
+	this->getPlayer()->setNombre(nombreJugador);
 	NewScene(altScene);
 	escenaActual = altScene;
 	//Normal
-	escenaActual->Init(altScene, player->getNombre());
+	//escenaActual->Init(altScene, player->getNombre());
 	//VersionDeluxe
-	//escenaActual->EscenaTesteo(altScene);
+	escenaActual->EscenaTesteo(altScene);
 	//VersionRandom
 	//escenaActual->EscenaRandom(altScene);
 }

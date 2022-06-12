@@ -11,10 +11,10 @@ private:
 
 public:
 	Jugador() {
-		//vida = 100.0f;
-		//municion = 50.0f;
-		//puntuacion = 0.0f;
-		//nombre = "";
+		vida = 100.0f;
+		municion = 50.0f;
+		puntuacion = 0.0f;
+		nombre = "";
 	}
 	Jugador(float v , float amo, float points, std::string nom)
 	{
@@ -34,6 +34,8 @@ public:
 	inline void  setPuntuacion(const  float& PuntuacionToSet) { this->puntuacion = PuntuacionToSet; }
 	inline void  setNombre(const  std::string& NombreToSet) { this->nombre = NombreToSet; }
 	//Otros Metodos
+	inline void addPuntuacion(const float& puntosSum) { this->puntuacion += puntosSum; }
+	inline void addVida(const float& vidaSum) { this->vida += vidaSum; }
 	void cambiarPuntuacion(float puntuacionCambia);
 	void cambiarMunicion(float municionCambia);
 	void cambiarVida(float vidaCambia);

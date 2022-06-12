@@ -52,6 +52,7 @@ void SceneUpdate::Disparo()
 {
 	int modoDisparo = this->tuArma->getShootMode();
 	Vector3D recamara = this->camera->getPos();
+	//Vigila el product es para reducir la verlocidad
 	Vector3D trayectoria = this->camera->GetSpeedVector().Product(0.1);
 	float tamañoNormal = 0.25f;
 	float tamañoGrande = 1.0f;
@@ -114,6 +115,7 @@ void SceneUpdate::EscenaTesteo(SceneUpdate* escenaCambia)
 	muestraModelo->setOrientationSpeed(Vector3D(0.0f, 0.5f, 0.0f));
 	muestraModelo->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
 	muestraModelo->PaintColor(Color(0.0f, 1.0f, 1.0f));
+	muestraModelo->setPuntos(100);
 	// Este es para poner el tamaño de la hitbox
 	muestraModelo->setScala(1.0f);
 	escenaCambia->add(muestraModelo);
@@ -138,6 +140,7 @@ void SceneUpdate::EscenaTesteo(SceneUpdate* escenaCambia)
 	muestraBoss->setOrientationSpeed(Vector3D(0.0f, 0.5f, 0.0f));
 	muestraBoss->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
 	muestraBoss->PaintColor(Color(1.0f, 0.0f, 1.0f));
+	muestraBoss->setDano(20);
 	// Este es para poner el tamaño de la hitbox
 	muestraBoss->setScala(1.0f);
 	
@@ -207,10 +210,11 @@ void SceneUpdate::Init(SceneUpdate* escenaCambia, string nombre)
 	muestraLoader->setScala(1);
 	muestraLoader->LoadModel("objects\\Satelite.obj");
 	*muestraModelo = muestraLoader->GetModel();
-	muestraModelo->setPos(Vector3D(20.0f, 12.0f, 5.0f));
+	//muestraModelo->setPos(Vector3D(20.0f, 12.0f, 5.0f));
+	muestraModelo->setPos(Vector3D(25.0, 14.0, 15.0));
 	muestraModelo->setAngulo(Vector3D(30.0f, -60.0f, -10.0f));
 	muestraModelo->setOrientationSpeed(Vector3D(0.5f, 1.0f, 0.0f));
-	muestraModelo->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	muestraModelo->setSpeed(Vector3D(0.0f, 0.0f, 1.0f));
 	muestraModelo->PaintColor(Color(1.0f, 1.0f, 1.0f));
 	// Este es para poner el tamaño de la hitbox
 	muestraModelo->setScala(1.0f);
@@ -227,65 +231,6 @@ void SceneUpdate::Init(SceneUpdate* escenaCambia, string nombre)
 	muestraText->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
 	muestraText->setRgb(Color(1.0f, 1.0f, 1.0f));
 	escenaCambia->add(muestraText);
-
-	//Text* muestraText = new Text();
-	//Model* muestraModelo = new Model();
-	//FinalBoss* muestraBoss = new FinalBoss();
-	//ModelLoader* muestraLoader = new ModelLoader();
-	//Solid* muestraSolid;
-
-	//muestraText = new Text("Jugar");
-	//muestraText->setPos(Vector3D(25.0f, 12.0f, 10.0f));
-	//muestraText->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
-	//muestraText->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
-	//muestraText->setRgb(Color(1.0f, 1.0f, 1.0f));
-	//escenaCambia->addFijo(muestraText);
-
-	//muestraText = new Text("Alejandro Cavero y Luis Mateos Sanchez");
-	//muestraText->setPos(Vector3D(25.0f, 5.0f, 10.0f));
-	//muestraText->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
-	//muestraText->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
-	//muestraText->setRgb(Color(1.0f, 1.0f, 0.0f));
-	//escenaCambia->addFijo(muestraText);
-
-
-	//muestraLoader->setScala(1);
-	////Asteroide no funciona
-	////muestraLoader->LoadModel("objects\\GiantTyraxRobot.dae");
-	//muestraLoader->LoadModel("objects\\JUNKBLASTER.obj");
-	//*muestraModelo = muestraLoader->GetModel();
-	//muestraModelo->setPos(Vector3D(25.0f, 12.0f, 28.0f));
-	//muestraModelo->setAngulo(Vector3D(180.0f, 0.0f, 0.0f));
-	//muestraModelo->setOrientationSpeed(Vector3D(0.0f, 0.5f, 0.0f));
-	//muestraModelo->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
-	//muestraModelo->PaintColor(Color(0.0f, 1.0f, 1.0f));
-	//// Este es para poner el tamaño de la hitbox
-	//muestraModelo->setScala(1.0f);
-	//escenaCambia->add(muestraModelo);
-
-	//muestraModelo = new Model();
-	//muestraLoader = new ModelLoader();
-
-	//muestraSolid = new Teapot();
-	//muestraSolid->setAngulo(Vector3D(30.0f, -60.0f, -10.0f));
-	//muestraSolid->setPos(Vector3D(20.0f, 12.0f, 5.0f));
-	//muestraSolid->setRgb(Color(1.0f, 0.0f, 0.0f));
-	//muestraSolid->setOrientationSpeed(Vector3D(0.0f, 5.0f, 0.0f));
-	//muestraSolid->setSpeed(Vector3D(0.1f, 0.2f, 0.0f));
-	//muestraSolid->setId(23);
-	//escenaCambia->add(muestraSolid);
-
-
-
-
-	//muestraText= new Text("Nombre Jugador " + nombre);
-
-
-	//muestraText->setPos(Vector3D(25.0f, 10.0f, 10.0f));
-	//muestraText->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
-	//muestraText->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
-	//muestraText->setRgb(Color(1.0f, 1.0f, 1.0f));
-	//escenaCambia->add(muestraText);
 
 }
 void SceneUpdate::EscenaRandom(SceneUpdate* escenaCambia) {
@@ -323,5 +268,22 @@ void SceneUpdate::EscenaRandom(SceneUpdate* escenaCambia) {
 			//escenaUsando->add(muestraLoader);
 			//muestraLoader->Clear();
 		}
+
+}
+
+void SceneUpdate::checkBoundary() {
+	for (size_t i = 0; i < moviles.size(); i++)
+	{
+		if (moviles[i]->getPos().getCoordinateX() > boundary.getCoordinateX() || moviles[i]->getPos().getCoordinateX() < boundary.getCoordinateX() * -1) {
+
+			moviles[i]->setSpeed(moviles[i]->getSpeed().MultValues(Vector3D(-1.0, 1.0, 1.0)));
+		}
+		if (moviles[i]->getPos().getCoordinateY() > boundary.getCoordinateY() || moviles[i]->getPos().getCoordinateY() < boundary.getCoordinateY() * -1) {
+			moviles[i]->setSpeed(moviles[i]->getSpeed().MultValues(Vector3D(1.0, -1.0, 1.0)));
+		}
+		if (moviles[i]->getPos().getCoordinateZ() > boundary.getCoordinateZ() || moviles[i]->getPos().getCoordinateZ() < boundary.getCoordinateZ() * -1) {
+			moviles[i]->setSpeed(moviles[i]->getSpeed().MultValues(Vector3D(1.0, 1.0, -1.0)));
+		}
+	}
 
 }

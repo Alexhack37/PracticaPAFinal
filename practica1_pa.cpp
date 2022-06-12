@@ -1,21 +1,19 @@
 #include <iostream>
 #include <string>
 #include <GL/glut.h>
-#include "Game.h"
-#include "Scene.h"
 #include "GameUpdate.h"
 #include "SceneUpdate.h"
 
 using namespace std;
 
 //Version Normal
-Game game;
-Scene scene;
+//Game game;
+//Scene scene;
 
 //Version Deluxe
 
-//GameUpdate game;
-//SceneUpdate scene;
+GameUpdate game;
+SceneUpdate scene;
 
 bool fullScreenMode = false;
 const int WINDOW_WIDTH = 800;
@@ -157,7 +155,7 @@ void idle() {
 
     game.Update();
     glutPostRedisplay();
-    //game.resuelveColisiones();
+    game.resuelveColisiones();
 }
 
 void specialKey(int key, int x, int y) {
