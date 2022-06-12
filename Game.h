@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "Scene.h"
+
 #include <string>
 
 #include <chrono>
@@ -34,13 +35,15 @@ private:
 	
 
 	//en escena
-	//Jugador player;
+	
 	
 
 public:
+	Jugador player;
+
 	//Constructor por defecto
 	Game() : escenaActual(nullptr), initialMilliseconds(duration_cast<milliseconds>(system_clock::now().time_since_epoch())),
-		lasUpdatedTime(0)/*, player() */{} //?
+		lasUpdatedTime(0), player(0.0f,0.0f, 0.0f,"") {} //?
 
 	void Init();
 	void Render();

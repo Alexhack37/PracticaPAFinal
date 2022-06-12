@@ -9,13 +9,13 @@
 using namespace std;
 
 //Version Normal
-//Game game;
-//Scene scene;
+Game game;
+Scene scene;
 
 //Version Deluxe
 
-GameUpdate game;
-SceneUpdate scene;
+//GameUpdate game;
+//SceneUpdate scene;
 
 bool fullScreenMode = false;
 const int WINDOW_WIDTH = 800;
@@ -133,27 +133,11 @@ void initGraphics() {
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor1);
     glEnable(GL_LIGHT1);
 
-    //glEnable(GL_LIGHT1);
-    //GLfloat ambientColor[] = { 0.5f, 0.5f, 0.5f, 1.0f };
-    //glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
-    //GLfloat lightColor0[] = { 0.0f, 0.7f, 0.7f,0.0f };
-    //GLfloat lightPos0[] = { 8.0f, 3.0f, 0.0f, 0.0 };
-    //glLightfv(GL_LIGHT1, GL_SPECULAR, lightColor0);
-    //glLightfv(GL_LIGHT1, GL_DIFFUSE, lightColor0);
-    //glLightfv(GL_LIGHT1, GL_POSITION, lightPos0);
-
-
-    //parametros foco
-    /*glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 15.0);
-    GLfloat spot_direction[] = { 0.0, -1.0, 0.0 };
-    glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, spot_direction);
-    glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 1.0);
-    glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 2.0);*/
 
     glEnable(GL_COLOR_MATERIAL);
     glClearColor(RED, GREEN, BLUE, ALPHA);
     game.Init();
-    //game.Escena1();
+
     
 }
 
@@ -173,7 +157,7 @@ void idle() {
 
     game.Update();
     glutPostRedisplay();
-    game.resuelveColisiones();
+    //game.resuelveColisiones();
 }
 
 void specialKey(int key, int x, int y) {
