@@ -103,7 +103,7 @@ public:
 	void Init(SceneUpdate* object, string nombre);
 	void Escena1(SceneUpdate* escenaUsando);
 	void EscenaFinal(SceneUpdate* object);
-	void Congratulations(SceneUpdate* object);
+	void Congratulations(SceneUpdate* object, string nombre, int amo);
 	void GameOver(SceneUpdate* object);
 	void Mercadero(SceneUpdate* object);
 	//Version que se llama desde game

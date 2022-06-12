@@ -28,6 +28,7 @@ void GameUpdate::resuelveColisiones()
 	this->escenaActual->resuelveColisiones();
 }
 void GameUpdate::Init() {
+	int amo = 100;
 	string nombreJugador;
 	cin >> nombreJugador;
 	player->setNombre(nombreJugador);
@@ -39,7 +40,8 @@ void GameUpdate::Init() {
 	//escenaActual->EscenaTesteo(altScene);
 	//VersionRandom
 	//escenaActual->EscenaRandom(altScene);
-	escenaActual->EscenaFinal(altScene);
+	//escenaActual->EscenaFinal(altScene);
+	escenaActual->Congratulations(altScene, player->getNombre(), amo);
 }
 void GameUpdate::NewScene(SceneUpdate* object) {
 	escenas.push_back(object);
