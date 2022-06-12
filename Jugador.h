@@ -11,10 +11,10 @@ private:
 
 public:
 	Jugador() {
-		vida = 100.0f;
-		municion = 50.0f;
-		puntuacion = 0.0f;
-		nombre = "JUNKRAT";
+		//vida = 100.0f;
+		//municion = 50.0f;
+		//puntuacion = 0.0f;
+		//nombre = "";
 	}
 	Jugador(float v , float amo, float points, std::string nom)
 	{

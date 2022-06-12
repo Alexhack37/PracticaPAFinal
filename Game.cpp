@@ -14,27 +14,42 @@ Scene* finalBossScene = new(nothrow) Scene();//escena final boss
 Scene* endScene = new(nothrow) Scene();//si ganas
 Scene* gameOver = new(nothrow) Scene();//si pierdes
 
+
 void Game::ProcessKeyPressed(unsigned char key, int px, int py) {
+	int i;
 	if (key == 't' && escenaActual == mainScene) {
 		mainScene->DeleteLastGameObject();
 	}
 	if (key == 'e' && escenaActual == altScene) {
 		escenaActual->Escena1(mainScene);
 	}
-
+	if (key == 'm' && escenaActual == mainScene) {
+		escenaActual = mainScene;
+		i = 1;
+		escenaActual->Mercadero(mainScene,i);
+	}
+	if (key == 'n' && escenaActual == mainScene) {
+		escenaActual = mainScene;
+		i = 2;
+		escenaActual->Mercadero(mainScene, i);
+	}
+	if (key == 'y' && escenaActual == mainScene) {
+		escenaActual = mainScene;
+		i = 3;
+		escenaActual->Mercadero(mainScene, i);
+		player.cambiarVida(100.0f);
+	}
 	if (key == 'y' && escenas.size() == 3) {
 		finalBossScene->DeleteLastGameObject();
 		if (finalBossScene->Size()) {
-			escenaActual->Congratulations(mainScene);
+			escenaActual->Congratulations(mainScene, player.getNombre(), player.getMunicion());
 		}
 	}
 	////Botones de disparo
 	if (key == 'f') {
+		player.cambiarMunicion(+1.0f);
 		escenaActual->Disparo(escenaActual);
-		//std::cout << "La posicion de la camara es esta, es un peligro " <<
-		//	this->escenaActual->camera->GetSpeedVector().getCoordinateX() <<
-		//	" " << this->escenaActual->camera->GetSpeedVector().getCoordinateY() <<
-		//	" " << this->escenaActual->camera->GetSpeedVector().getCoordinateZ() << std::endl;
+		cout << player.getMunicion() << endl;
 	}
 	if (key == 'p' || key == 'P') {
 
@@ -44,8 +59,9 @@ void Game::ProcessKeyPressed(unsigned char key, int px, int py) {
 		escenaActual->tuMirila->CambiarScope();
 	}
 	if (key == 's' || key == 'S') { //reset camera
-		escenaActual->tuArma->setAngulo(Vector3D(0.0, 0.0, 90.0));
-		escenaActual->tuMirila->setAngulo(Vector3D(0.0, 0.0, 90.0));
+		
+		escenaActual->camera->setAngulo(Vector3D(0.0, 0.0, 0.0));
+		//escenaActual->tuMirila->setAngulo(Vector3D(0.0, 0.0, 0.0));
 	}
 }
 //Movimiento del raton
@@ -65,10 +81,13 @@ void Game::ProcessMouseClick(int button, int state, int x, int y) {
 }
 
 void Game::Init() {
+	string nombreJugador;
+	cin >> nombreJugador;
+	player.setNombre(nombreJugador);
 	NewScene(altScene);
 	escenaActual = altScene;
 	//Normal
-	escenaActual->Init(altScene);
+	escenaActual->Init(altScene, player.getNombre() );
 	//VersionDeluxe
 	//escenaActual->Init(altScene);
 }
@@ -88,18 +107,19 @@ void Game::Update() {
 		this->escenaActual->Update(TIME_INCREMENT);
 		this->lasUpdatedTime = currentTime.count() - this->initialMilliseconds.count();
 	}
-	//cout << mainScene->Size() << endl;
+	//cout << escenaActual->Size() << endl;
 	if (escenas.size() == 2 && mainScene->Size() == 0) {
+		
 		NewScene(finalBossScene);
 		escenaActual = finalBossScene;
 		escenaActual->EscenaFinal(finalBossScene);
 	}
-	if(escenas.size() == 3 && !finalBossScene->checkObjetIndex(9)){
+	if(escenas.size() == 3 && !finalBossScene->checkObjetIndex(11)){
 			NewScene(endScene);
 			escenaActual = endScene;
-			escenaActual->Congratulations(endScene);
+			escenaActual->Congratulations(endScene, player.getNombre(), player.getMunicion());
 	}
-	if (escenas.size() == 3 && !finalBossScene->checkObjetIndex(7) && !finalBossScene->checkObjetIndex(8)) {
+	if (escenas.size() == 3 && !finalBossScene->checkObjetIndex(12) && !finalBossScene->checkObjetIndex(13)) {
 		NewScene(gameOver);
 		escenaActual = gameOver;
 		escenaActual->GameOver(gameOver);

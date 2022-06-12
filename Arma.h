@@ -8,7 +8,7 @@ private:
 
 	int mouseX;
 	int mouseY;
-
+	float municion;
 	int modoDisparo = 0;    //Valor del disparo por defecto
 
 	float m_longit{};
@@ -23,10 +23,12 @@ public:
 		Vector3D vectorRotacion = Vector3D(0.0, 0.0, 0.0),
 		Vector3D vectorDesplazamiento = Vector3D(0.0, 0.0, 0.0),
 		int shootMode = 0,
+		float amo = 0.0f,
 		float longit = 0.75,
 		float height = 0.75,
 		float width = 3.0)
 		:CuboId{ position, orientation, rgb, vectorRotacion, vectorDesplazamiento },
+		municion{amo},
 		modoDisparo{ shootMode },
 		m_longit{ longit },
 		m_height{ height },
@@ -44,10 +46,12 @@ public:
 	inline int getShootMode() const { return this->modoDisparo; }
 	inline void setShootMode(const  int& nuevoShootMode) { this->modoDisparo = nuevoShootMode; }
 
+	inline void  setMunicion(const  float& MunicionToSet) { this->municion = MunicionToSet; }
+	inline float getMunicion() const { return this->municion; }
 
 
 	void ProcessMouseMovement(int x, int y);
-	void ProcessKeyPressed(unsigned char key, int px, int py);
+	//void ProcessKeyPressed(unsigned char key, int px, int py);
 
 	inline float GetMouseX() const { return this->mouseX; }
 	inline void SetMouseX(const float& mousexToSet) { this->mouseX = mousexToSet; }
@@ -55,6 +59,9 @@ public:
 	inline float GetMouseY() const { return this->mouseY; }
 	inline void SetMouseY(const float& mouseyToSet) { this->mouseY = mouseyToSet; }
 
+
+
+	//void cambiarMunicion(float municionCambia);
 	void Dispara();
 
 	void Render();
