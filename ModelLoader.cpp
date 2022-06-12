@@ -30,6 +30,7 @@ void ModelLoader::LoadModel(const string& pathobj) {
 					
 					this->modelo.AddTriangle(this->Center(triangle));
 					this->boss.AddTriangle(this->Center(triangle));
+					this->mercader.AddTriangle(this->Center(triangle));
 				}
 			}
 			objFile.close();
@@ -126,6 +127,7 @@ void ModelLoader::Clear() {
 	normales.clear();
 	modelo.Clear();
 	boss.Clear();
+	mercader.Clear();
 }
 
 float ModelLoader::getWidth(){
