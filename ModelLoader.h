@@ -1,6 +1,7 @@
 #pragma once
 #include "Model.h"
 #include "FinalBoss.h"
+#include "Mercader.h"
 #include "Solid.h"
 #include <iostream>
 #include <string>
@@ -14,6 +15,7 @@ private:
 	//float scala;
 	Model modelo;
 	FinalBoss boss;
+	Mercader mercader;
 	vector<Vector3D> vertices;
 	vector<Vector3D>  normales;
 
@@ -40,6 +42,7 @@ public:
 
 	inline Model GetModel() const { return this->modelo; }
 	inline FinalBoss GetBoss() const { return this->boss; }
+	inline Mercader GetModelMer() const { return this->mercader; }
 
 	//inline float GetScala() const { return this->scala; }
 	//inline void setScala(const  float& scalaToSet) { this->scala = scalaToSet; }
