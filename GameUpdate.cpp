@@ -31,9 +31,11 @@ void GameUpdate::Init() {
 	NewScene(altScene);
 	escenaActual = altScene;
 	//Normal
-	//escenaActual->Init(altScene);
+	escenaActual->Init(altScene, player->getNombre());
 	//VersionDeluxe
-	escenaActual->EscenaTesteo(altScene);
+	//escenaActual->EscenaTesteo(altScene);
+	//VersionRandom
+	//escenaActual->EscenaRandom(altScene);
 }
 void GameUpdate::NewScene(SceneUpdate* object) {
 	escenas.push_back(object);

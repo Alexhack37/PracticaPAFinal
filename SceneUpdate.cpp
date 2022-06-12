@@ -122,8 +122,12 @@ void SceneUpdate::EscenaTesteo(SceneUpdate* escenaCambia)
 	muestraModelo = new Model();
 	muestraLoader = new ModelLoader();
 
+
+
+
+	//Así se declara un boss
 	//Este es para poner el tamaño del modelo
-	muestraLoader->setScala(1);
+	muestraLoader->setScala(0.5);
 	//Asteroide no funciona
 	//muestraLoader->LoadModel("objects\\GiantTyraxRobot.dae");
 	//muestraLoader->LoadModel("objects\\Asteroide.obj");
@@ -152,13 +156,13 @@ void SceneUpdate::EscenaTesteo(SceneUpdate* escenaCambia)
 	
 
 }
-void SceneUpdate::Init(SceneUpdate* escenaCambia)
+void SceneUpdate::Init(SceneUpdate* escenaCambia, string nombre)
 {
 	Text* muestraText = new Text();
 	Model* muestraModelo = new Model();
 	FinalBoss* muestraBoss = new FinalBoss();
 	ModelLoader* muestraLoader = new ModelLoader();
-	Solid* muestraSolid;
+	/*Solid* muestraSolid;*/
 
 	muestraText = new Text("Jugar");
 	muestraText->setPos(Vector3D(25.0f, 12.0f, 10.0f));
@@ -175,36 +179,47 @@ void SceneUpdate::Init(SceneUpdate* escenaCambia)
 	escenaCambia->addFijo(muestraText);
 
 
-	muestraLoader->setScala(1);
-	//Asteroide no funciona
-	//muestraLoader->LoadModel("objects\\GiantTyraxRobot.dae");
+	muestraLoader->setScala(4);
 	muestraLoader->LoadModel("objects\\JUNKBLASTER.obj");
 	*muestraModelo = muestraLoader->GetModel();
-	muestraModelo->setPos(Vector3D(25.0f, 12.0f, 28.0f));
-	muestraModelo->setAngulo(Vector3D(180.0f, 0.0f, 0.0f));
-	muestraModelo->setOrientationSpeed(Vector3D(0.0f, 0.5f, 0.0f));
+	muestraModelo->setPos(Vector3D(25.0f, 15.0f, 10.0f));
+	muestraModelo->setAngulo(Vector3D(180.0f, 180.0f, 0.0f));
+	muestraModelo->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
 	muestraModelo->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
 	muestraModelo->PaintColor(Color(0.0f, 1.0f, 1.0f));
 	// Este es para poner el tamaño de la hitbox
 	muestraModelo->setScala(1.0f);
 	escenaCambia->add(muestraModelo);
+	muestraLoader->Clear();
 
 	muestraModelo = new Model();
 	muestraLoader = new ModelLoader();
 
-	muestraSolid = new Teapot();
-	muestraSolid->setAngulo(Vector3D(30.0f, -60.0f, -10.0f));
-	muestraSolid->setPos(Vector3D(20.0f, 12.0f, 5.0f));
-	muestraSolid->setRgb(Color(1.0f, 0.0f, 0.0f));
-	muestraSolid->setOrientationSpeed(Vector3D(0.0f, 5.0f, 0.0f));
-	muestraSolid->setSpeed(Vector3D(0.1f, 0.2f, 0.0f));
-	muestraSolid->setId(23);
-	escenaCambia->add(muestraSolid);
+	//muestraSolid = new Teapot();
+	//muestraSolid->setAngulo(Vector3D(30.0f, -60.0f, -10.0f));
+	//muestraSolid->setPos(Vector3D(20.0f, 12.0f, 5.0f));
+	//muestraSolid->setRgb(Color(1.0f, 0.0f, 0.0f));
+	//muestraSolid->setOrientationSpeed(Vector3D(0.0f, 5.0f, 0.0f));
+	//muestraSolid->setSpeed(Vector3D(0.1f, 0.2f, 0.0f));
+	//muestraSolid->setId(23);
+	//escenaCambia->add(muestraSolid);
+
+	muestraLoader->setScala(1);
+	muestraLoader->LoadModel("objects\\Satelite.obj");
+	*muestraModelo = muestraLoader->GetModel();
+	muestraModelo->setPos(Vector3D(20.0f, 12.0f, 5.0f));
+	muestraModelo->setAngulo(Vector3D(30.0f, -60.0f, -10.0f));
+	muestraModelo->setOrientationSpeed(Vector3D(0.5f, 1.0f, 0.0f));
+	muestraModelo->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	muestraModelo->PaintColor(Color(1.0f, 1.0f, 1.0f));
+	// Este es para poner el tamaño de la hitbox
+	muestraModelo->setScala(1.0f);
+	escenaCambia->add(muestraModelo);
+	muestraLoader->Clear();
 
 
 
-
-	muestraText= new Text("Nombre Jugador " + nombre);
+	muestraText = new Text("Nombre Jugador " + nombre);
 
 
 	muestraText->setPos(Vector3D(25.0f, 10.0f, 10.0f));
@@ -212,5 +227,101 @@ void SceneUpdate::Init(SceneUpdate* escenaCambia)
 	muestraText->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
 	muestraText->setRgb(Color(1.0f, 1.0f, 1.0f));
 	escenaCambia->add(muestraText);
+
+	//Text* muestraText = new Text();
+	//Model* muestraModelo = new Model();
+	//FinalBoss* muestraBoss = new FinalBoss();
+	//ModelLoader* muestraLoader = new ModelLoader();
+	//Solid* muestraSolid;
+
+	//muestraText = new Text("Jugar");
+	//muestraText->setPos(Vector3D(25.0f, 12.0f, 10.0f));
+	//muestraText->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
+	//muestraText->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	//muestraText->setRgb(Color(1.0f, 1.0f, 1.0f));
+	//escenaCambia->addFijo(muestraText);
+
+	//muestraText = new Text("Alejandro Cavero y Luis Mateos Sanchez");
+	//muestraText->setPos(Vector3D(25.0f, 5.0f, 10.0f));
+	//muestraText->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
+	//muestraText->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	//muestraText->setRgb(Color(1.0f, 1.0f, 0.0f));
+	//escenaCambia->addFijo(muestraText);
+
+
+	//muestraLoader->setScala(1);
+	////Asteroide no funciona
+	////muestraLoader->LoadModel("objects\\GiantTyraxRobot.dae");
+	//muestraLoader->LoadModel("objects\\JUNKBLASTER.obj");
+	//*muestraModelo = muestraLoader->GetModel();
+	//muestraModelo->setPos(Vector3D(25.0f, 12.0f, 28.0f));
+	//muestraModelo->setAngulo(Vector3D(180.0f, 0.0f, 0.0f));
+	//muestraModelo->setOrientationSpeed(Vector3D(0.0f, 0.5f, 0.0f));
+	//muestraModelo->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	//muestraModelo->PaintColor(Color(0.0f, 1.0f, 1.0f));
+	//// Este es para poner el tamaño de la hitbox
+	//muestraModelo->setScala(1.0f);
+	//escenaCambia->add(muestraModelo);
+
+	//muestraModelo = new Model();
+	//muestraLoader = new ModelLoader();
+
+	//muestraSolid = new Teapot();
+	//muestraSolid->setAngulo(Vector3D(30.0f, -60.0f, -10.0f));
+	//muestraSolid->setPos(Vector3D(20.0f, 12.0f, 5.0f));
+	//muestraSolid->setRgb(Color(1.0f, 0.0f, 0.0f));
+	//muestraSolid->setOrientationSpeed(Vector3D(0.0f, 5.0f, 0.0f));
+	//muestraSolid->setSpeed(Vector3D(0.1f, 0.2f, 0.0f));
+	//muestraSolid->setId(23);
+	//escenaCambia->add(muestraSolid);
+
+
+
+
+	//muestraText= new Text("Nombre Jugador " + nombre);
+
+
+	//muestraText->setPos(Vector3D(25.0f, 10.0f, 10.0f));
+	//muestraText->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
+	//muestraText->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	//muestraText->setRgb(Color(1.0f, 1.0f, 1.0f));
+	//escenaCambia->add(muestraText);
+
+}
+void SceneUpdate::EscenaRandom(SceneUpdate* escenaCambia) {
+
+		int tamanoEscena2 = 3;
+		//escena = 2;
+
+		srand(time(NULL));
+		for (int i = 0; i < tamanoEscena2; i++)
+		{
+			//float randomScala  = rand() % 3 + 1;
+			float randomScala = 4;
+			float posX = rand() % 50 + 1;
+			float posY = rand() % 20 + 1;
+			/*ModelLoader* loaderPEr = new ModelLoader();
+			Model* objetoPer = new Model();*/
+
+			Model* muestraModelo = new Model();
+			ModelLoader* muestraLoader = new ModelLoader();
+
+			muestraLoader->setScala(randomScala);
+			muestraLoader->LoadModel("objects\\" + objetos[rand() % 7] + ".obj");
+			*muestraModelo = muestraLoader->GetModel();
+			//objetoPer->setPos(Vector3D(static_cast <float>(rand() % 20 + 1.0f), static_cast <float>(rand()%20+ 1.0f) ,7.0f));//2,2,2
+			muestraModelo->setPos(Vector3D(posX, posY, 10.0f));
+			muestraModelo->setAngulo(Vector3D(180.0f, posY, 0.0f));
+			muestraModelo->setOrientationSpeed(Vector3D(0.1f, static_cast <float>(rand() % 10) / 40, 0.0f));
+			//objetoPer->setSpeed(Vector3D(static_cast <float>(rand() % 10) / 40 , static_cast <float>(rand() % 10) / 40, 0.0f));
+			//muestraModelo->setSpeed(Vector3D(static_cast <float>(rand() % 10) / 40, 0.1f, 0.0f));
+			muestraModelo->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+			muestraModelo->PaintColor(Color(static_cast <float>(rand() % 10) / 30, static_cast <float>(rand() % 10) / 10, static_cast <float>(rand() % 10) / 20));
+			muestraModelo->setId(i);
+			muestraModelo->setScala(randomScala);
+			escenaCambia->add(muestraModelo);
+			//escenaUsando->add(muestraLoader);
+			//muestraLoader->Clear();
+		}
 
 }

@@ -27,6 +27,8 @@ public:
 		this->tuProyectil->setPos(camera->getPos());
 		this->tuArma = new Arma(Vector3D(25.0f, 6.0f, 22.0f));
 		this->nombre = "Escena por defecto";
+
+		//Añadir los planos que haran de boundri por defecto
 	};
 	virtual ~SceneUpdate();
 	void add(Solid* s) {
@@ -87,8 +89,8 @@ public:
 			if (tuProyectil->colision(c)) {
 				tuProyectil->resuelveColision(c);
 				c->resuelveColision(tuProyectil);
-				//tuProyectil->setPos(camera->getPos());
-				//tuProyectil->setSpeed(Vector3D(100.0f, 100.0f, 100.0f));
+				tuProyectil->setPos(camera->getPos().Sub(Vector3D(0.0f, 0.0f, 100.0f)));
+				tuProyectil->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
 			}
 		}
 	}
@@ -98,7 +100,7 @@ public:
 	void ProcessMouseMovement(int x, int y);
 	void ProcessKeyPressed(unsigned char key, int px, int py);
 
-	void Init(SceneUpdate* object);
+	void Init(SceneUpdate* object, string nombre);
 	void Escena1(SceneUpdate* escenaUsando);
 	void EscenaFinal(SceneUpdate* object);
 	void Congratulations(SceneUpdate* object);
@@ -109,5 +111,6 @@ public:
 	void Disparo();
 
 	void EscenaTesteo(SceneUpdate* escenaCambia);
+	void EscenaRandom(SceneUpdate* escenaCambia);
 };
 
