@@ -30,3 +30,19 @@ bool Contorno::colision(Proyectil* bala)
 	float l = vd.Modulo();
 	return l < r + rb;
 }
+bool Contorno::colision(Model* modelo)
+{
+	Vector3D pm = modelo->getPos();
+	float rm = modelo->GetScala();
+	Vector3D vd = pm.Sub(p);
+	float l = vd.Modulo();
+	return l < r + rm;
+}
+//bool Contorno::colision(ModelLoader* modelo)
+//{
+//	Vector3D pm = modelo->GetModel().getPos();
+//	float rm = modelo->GetScala();
+//	Vector3D vd = pm.Sub(p);
+//	float l = vd.Modulo();
+//	return l < r + rm;
+//}

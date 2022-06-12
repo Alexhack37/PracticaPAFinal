@@ -373,7 +373,7 @@ void Scene::EscenaFinal(Scene* escenaUsando) {
 
 
 
-	boss->setSize(2);
+	boss->setScala(2);
 	boss->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
 	boss->setPos(Vector3D(24.0f, 10.0f, 5.0f));
 	boss->setRgb(Color(0.0f, 0.0f, 1.0f));

@@ -77,17 +77,18 @@ public:
 		for (Solid* m : moviles) {
 			for (Solid* c : colisionables) {
 				if (c != m) {
-
-					if (tuProyectil->colision(c)) {
-						tuProyectil->resuelveColision(c);
-						c->resuelveColision(tuProyectil);
-						tuProyectil->setPos(camera->getPos());
-						tuProyectil->setSpeed(Vector3D(0.0f, 0.0f, 0.0f));
-					}
 					if (m->colision(c)) {
 						m->resuelveColision(c);
 					}
 				}
+			}
+		}
+		for (Solid* c : colisionables) {
+			if (tuProyectil->colision(c)) {
+				tuProyectil->resuelveColision(c);
+				c->resuelveColision(tuProyectil);
+				//tuProyectil->setPos(camera->getPos());
+				//tuProyectil->setSpeed(Vector3D(100.0f, 100.0f, 100.0f));
 			}
 		}
 	}

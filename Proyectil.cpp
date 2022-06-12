@@ -18,7 +18,7 @@ void Proyectil::Render() {
 
 void Proyectil::resuelveColision(Solid* s)
 {
-	std::cout << "Actualy" << endl;
+	std::cout << "colision proyectil" << endl;
 }
 
 Contorno* Proyectil::getContorno() {
@@ -27,7 +27,6 @@ Contorno* Proyectil::getContorno() {
 bool Proyectil::colision(Solid* s) {
 	Contorno* c = s->getContorno();
 	return c->colision(this);
-	return false;
 }
 
  

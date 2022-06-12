@@ -1,17 +1,19 @@
 #pragma once
 #include "Model.h"
+#include "FinalBoss.h"
 #include "Solid.h"
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <sstream>
 
-class ModelLoader : Model
+class ModelLoader : public Model
 {
 
 private:
-	float scala;
+	//float scala;
 	Model modelo;
+	FinalBoss boss;
 	vector<Vector3D> vertices;
 	vector<Vector3D>  normales;
 
@@ -27,26 +29,30 @@ private:
 	Triangle parseObjTriangle(const string& archObj);
 public:
 
-	ModelLoader():scala(0.0f), xMin(0.0f), yMin(0.0f) , zMin(0.0f) , xMax(0.0f), yMax(0.0f), zMax(0.0f) {}
+	ModelLoader() {
+		xMin = 0.0f;
+		yMin = 0.0f;
+		zMin = 0.0f;
+		xMax = 0.0f;
+		xMax = 0.0f;
+		xMax = 0.0f;
+	}
 
 	inline Model GetModel() const { return this->modelo; }
+	inline FinalBoss GetBoss() const { return this->boss; }
 
-	inline float GetScala() const { return this->scala; }
-	inline void setScala(const  float& scalaToSet) { this->scala = scalaToSet; }
+	//inline float GetScala() const { return this->scala; }
+	//inline void setScala(const  float& scalaToSet) { this->scala = scalaToSet; }
 	float getWidth();
 	float getHeight();
 	float getLength();
 
 	void LoadModel(const string& pathobj);
 	void Clear();
-	
 
-	//pregunta 6.c.1 los elementos del codigo relacionado con el tratamiento de excepciones es el try catch y un if else que avisa si no se pudo abrir el archivo. Mas seguridad y estabilidad, "Excepcion al procesar el archivo"
-	// y da un  error Exception ex. Si no existiera un modelo el programa pondira null en algunaas ubicaciones de memoria causando un error.
+	//Contorno* getContorno();
+	//bool colision(Solid* s);
+	//void resuelveColision(Solid* s);
 
-	// pregunta 6.c.2 el ifstream representa un flujo de caracteres provenientes de un archivo de entrada. Usamos ofstream para representar un flujo de caracteres que van a un archivo de salida. Asocia un obeto a objFile y mientras exista (o tenga lineas) asigna vertices color y normales
-	//hay que cerrarlo despies de usarlo
-
-	//pregunta 6.c.3  Clase de flujo de entrada para operar en cadenas. nos permite poder trabajar con cadenas. Los caracteres de la secuencia se pueden extraer de la cadena mediante cualquier operación permitida en las input streams. 
 };
 

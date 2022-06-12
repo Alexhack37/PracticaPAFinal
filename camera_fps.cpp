@@ -10,6 +10,10 @@ void CameraFPS :: Render()
 void CameraFPS::Update(const float& time)
 {
 	this->SetSpeedVector(this->calcSpeedVector());
+	//std::cout << "El speed Vector tras update es " <<
+	//	this->GetSpeedVector().getCoordinateX() << " " <<
+	//	this->GetSpeedVector().getCoordinateY() << " " <<
+	//	this->GetSpeedVector().getCoordinateZ() << std::endl;
 	this->setSpeed(this->GetSpeedVector());
 	//Camera::Update(time);
 }

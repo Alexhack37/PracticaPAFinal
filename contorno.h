@@ -13,6 +13,8 @@
 #include "EsferaColision.h"
 #include "CuboColision.h"
 #include "Proyectil.h"
+#include "Model.h"
+#include "ModelLoader.h"
 class Contorno{
 	Vector3D p;
 	float r;
@@ -23,6 +25,8 @@ public:
 	bool colision(EsferaColision* e);
 	bool colision(CuboColision* c);
 	bool colision(Proyectil* bala);
+	bool colision(Model* modelo);
+	//bool colision(ModelLoader* modelo);
 	//Objetos enemigo
 
 	//Final boss

@@ -1,4 +1,5 @@
 #include "ModelLoader.h"
+#include "contorno.h"
 
 void ModelLoader::LoadModel(const string& pathobj) {
 	
@@ -28,6 +29,7 @@ void ModelLoader::LoadModel(const string& pathobj) {
 					Triangle triangle = this->parseObjTriangle(line);
 					
 					this->modelo.AddTriangle(this->Center(triangle));
+					this->boss.AddTriangle(this->Center(triangle));
 				}
 			}
 			objFile.close();
@@ -123,6 +125,7 @@ void ModelLoader::Clear() {
 	vertices.clear();
 	normales.clear();
 	modelo.Clear();
+	boss.Clear();
 }
 
 float ModelLoader::getWidth(){
@@ -134,3 +137,4 @@ float ModelLoader::getHeight(){
 float ModelLoader::getLength(){
 	return zMax - zMin;
 }
+

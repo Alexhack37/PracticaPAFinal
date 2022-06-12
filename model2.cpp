@@ -47,8 +47,15 @@ Triangulo* Modelo::parseTriangulo(string& linea) {
 	iv0--;
 	iv1--;
 	iv2--;
+
+	//Vector3D p0 = *vertices[iv0];
+
 	Vector3D p0 = *vertices[iv0];
+	
+	cout << "ha pasado iv0" << endl;
 	Vector3D p1 = *vertices[iv1];
+	//Vector3D p1 = *vertices.at(iv1);
+	cout << "ha pasadoiv1." << endl;
 	Vector3D p2 = *vertices[iv2];
 	Triangulo* t = new Triangulo(p0, p1, p2);
 	return t;
@@ -82,6 +89,7 @@ void Modelo::cargar(string nombreFichero) {
 			Vector3D centro(minX + getAncho() / 2.0, minY + getAlto() / 2.0, minZ + getProfundo() / 2);
 			if (linea.c_str()[0] == 'f') {
 				linea[0] = ' ';
+				//cout << "Fichero " + nombreFichero + " no existe." << endl;
 				Triangulo* t = parseTriangulo(linea);
 				//triangulos.push_back(t);
 				triangulos.push_back(centrar(t));

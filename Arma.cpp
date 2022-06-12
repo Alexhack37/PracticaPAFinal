@@ -1,7 +1,6 @@
 #include "Arma.h"
 #include <iostream>
 
-// Cuando coges el arma cuatro es hora de morbear
 
 void Arma::Render() {
 

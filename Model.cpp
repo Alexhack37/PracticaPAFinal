@@ -1,4 +1,5 @@
 #include "Model.h"
+#include "contorno.h"
 
 
 void Model::AddTriangle(Triangle triangle) {
@@ -35,6 +36,19 @@ void Model::Render() {
 
 	glPopMatrix();
 
+}
+
+void Model::resuelveColision(Solid* s)
+{
+	//std::cout << "colision modelo" << endl;
+}
+
+Contorno* Model::getContorno() {
+	return new Contorno(getPos(), GetScala());
+}
+bool Model::colision(Solid* s) {
+	Contorno* c = s->getContorno();
+	return c->colision(this);
 }
 
 //respouesta a la pregunta 6.b.1  || La finalidad de andpersant significa que estamos pasando la variable por referencia, aceptando la direccion de la variable en vez del valor de triagulos, si no se pone no funciona
