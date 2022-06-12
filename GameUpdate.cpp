@@ -17,25 +17,29 @@ void GameUpdate::ProcessKeyPressed(unsigned char key, int px, int py) {
 	this->escenaActual->ProcessKeyPressed(key, px, py);
 }
 void GameUpdate::ProcessMouseClick(int button, int state, int x, int y) {
-	//if (x > 350 && y > 400 && escenaActual == altScene) {
-	//	escenaActual = mainScene;
-	//	escenaActual->Escena1(mainScene);
-	//	NewScene(mainScene);
-	//}
+	if (x > 350 && y > 400 && escenaActual == altScene) {
+		escenaActual = mainScene;
+		escenaActual->EscenaRandom(mainScene);
+		NewScene(mainScene);
+	}
 }
 void GameUpdate::resuelveColisiones()
 {
 	this->escenaActual->resuelveColisiones();
 }
 void GameUpdate::Init() {
+	string nombreJugador;
+	cin >> nombreJugador;
+	player->setNombre(nombreJugador);
 	NewScene(altScene);
 	escenaActual = altScene;
 	//Normal
-	escenaActual->Init(altScene, player->getNombre());
+	//escenaActual->Init(altScene, player->getNombre());
 	//VersionDeluxe
 	//escenaActual->EscenaTesteo(altScene);
 	//VersionRandom
 	//escenaActual->EscenaRandom(altScene);
+	escenaActual->EscenaFinal(altScene);
 }
 void GameUpdate::NewScene(SceneUpdate* object) {
 	escenas.push_back(object);

@@ -140,7 +140,6 @@ void SceneUpdate::EscenaTesteo(SceneUpdate* escenaCambia)
 	muestraBoss->PaintColor(Color(1.0f, 0.0f, 1.0f));
 	// Este es para poner el tamaño de la hitbox
 	muestraBoss->setScala(1.0f);
-	
 	escenaCambia->add(muestraBoss);
 
 	//Declaro los solid
@@ -226,7 +225,7 @@ void SceneUpdate::Init(SceneUpdate* escenaCambia, string nombre)
 	muestraText->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
 	muestraText->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
 	muestraText->setRgb(Color(1.0f, 1.0f, 1.0f));
-	escenaCambia->add(muestraText);
+	escenaCambia->addFijo(muestraText);
 
 	//Text* muestraText = new Text();
 	//Model* muestraModelo = new Model();
@@ -323,5 +322,57 @@ void SceneUpdate::EscenaRandom(SceneUpdate* escenaCambia) {
 			//escenaUsando->add(muestraLoader);
 			//muestraLoader->Clear();
 		}
+
+}
+void SceneUpdate::EscenaFinal(SceneUpdate* escenaUsando) {
+
+	Text* muestraText = new Text();
+	Model* muestraModelo = new Model();
+	FinalBoss* muestraBoss = new FinalBoss();
+	ModelLoader* muestraLoader = new ModelLoader();
+
+
+	muestraText = new Text("FINNAL BOSS");
+	muestraText->setPos(Vector3D(22.0f, 25.0f, 0.0f));
+	muestraText->setAngulo(Vector3D(0.0f, 0.0f, 0.0f));
+	muestraText->setOrientationSpeed(Vector3D(0.0f, 0.0f, 0.0f));
+	muestraText->setRgb(Color(1.0f, 1.0f, 1.0f));
+	escenaUsando->addFijo(muestraText);
+
+
+	//Así se declara un boss
+	//Este es para poner el tamaño del modelo
+	muestraLoader->setScala(0.8);
+	muestraLoader->LoadModel("objects\\Meteorito.obj");
+	*muestraBoss = muestraLoader->GetBoss();
+	muestraBoss->setPos(Vector3D(20.0f, 12.0f, 10.0f));
+	muestraBoss->setAngulo(Vector3D(0.0f, 90.0f, 0.0f));
+	muestraBoss->setOrientationSpeed(Vector3D(0.4f, 0.0f, 0.0f));
+	muestraBoss->setSpeed(Vector3D(0.1f, 0.0f, 0.0f));
+	muestraBoss->PaintColor(Color(1.0f, 0.0f, 1.0f));
+	// Este es para poner el tamaño de la hitbox
+	muestraBoss->setScala(1.0f);
+	escenaUsando->add(muestraBoss);
+
+	muestraModelo = new Model();
+	muestraLoader = new ModelLoader();
+
+	//Este es para poner el tamaño del modelo
+	muestraLoader->setScala(1);
+	muestraLoader->LoadModel("objects\\Satelite.obj");
+	*muestraModelo = muestraLoader->GetModel();
+	muestraModelo->setPos(Vector3D(20.0f, 10.0f, 5.0f));
+	muestraModelo->setAngulo(Vector3D(30.0f, -60.0f, -10.0f));
+	muestraModelo->setOrientationSpeed(Vector3D(0.0f, 0.5f, 0.0f));
+	muestraModelo->setSpeed(Vector3D(0.1f, 0.1f, 0.0f));
+	muestraModelo->PaintColor(Color(0.0f, 1.0f, 1.0f));
+	// Este es para poner el tamaño de la hitbox
+	muestraModelo->setScala(1.0f);
+	escenaUsando->add(muestraModelo);
+
+
+
+
+
 
 }
